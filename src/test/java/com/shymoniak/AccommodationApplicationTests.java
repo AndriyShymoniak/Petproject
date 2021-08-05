@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,49 +54,89 @@ class AccommodationApplicationTests {
     }
 
     private void generateRoomList() {
-        Room room1 = new Room(64, 2);
-        Room room2 = new Room(29, 8);
-        Room room3 = new Room(110, 10);
-        Room room4 = new Room(50, 4);
-        Room room5 = new Room(100, 5);
-        Room room6 = new Room(30, 4);
+        Room room1 = Room.builder().square(64).floor(2).build();
+        Room room2 = Room.builder().square(29).floor(8).build();
+        Room room3 = Room.builder().square(11).floor(10).build();
+        Room room4 = Room.builder().square(50).floor(4).build();
+        Room room5 = Room.builder().square(10).floor(5).build();
+        Room room6 = Room.builder().square(30).floor(4).build();
         rooms.addAll(Stream.of(room1, room2, room3, room4, room5, room6)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     private void generateLocationList() {
-        Location location1 = new Location("49.6415", "30.7954");
-        Location location2 = new Location("47.4520", "35.5554");
-        Location location3 = new Location("46.5116", "40.4468");
-        Location location4 = new Location("45.7845", "39.8745");
-        Location location5 = new Location("42.1986", "40.7877");
-        Location location6 = new Location("49.5555", "37.4747");
-        Location location7 = new Location("45.7787", "50.8745");
+        Location location1 = Location.builder().longitude("49.6415").latitude("30.7954").build();
+        Location location2 = Location.builder().longitude("47.4520").latitude("35.5554").build();
+        Location location3 = Location.builder().longitude("46.5116").latitude("40.4468").build();
+        Location location4 = Location.builder().longitude("45.7845").latitude("39.8745").build();
+        Location location5 = Location.builder().longitude("42.1986").latitude("40.7877").build();
+        Location location6 = Location.builder().longitude("49.5555").latitude("37.4747").build();
+        Location location7 = Location.builder().longitude("45.7787").latitude("50.8745").build();
         locations.addAll(Stream.of(location1, location2, location3, location4, location5, location6, location7)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     private void generateCityList() {
-        City city1 = new City("Lviv", locations.get(0));
-        City city2 = new City("Kyiv", locations.get(1));
-        City city3 = new City("Odessa", locations.get(2));
+        City city1 = City.builder()
+                .cityName("Lviv")
+                .locationList(Arrays.asList(locations.get(0), locations.get(1)))
+                .build();
+        City city2 = City.builder()
+                .cityName("Kyiv")
+                .locationList(Arrays.asList(locations.get(2), locations.get(3)))
+                .build();
+        City city3 = City.builder()
+                .cityName("Odessa")
+                .locationList(Arrays.asList(locations.get(4), locations.get(5)))
+                .build();
+
         cities.addAll(Stream.of(city1, city2, city3)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     private void generateAccommodationList() {
-        Accommodation accommodation1 = new Accommodation(50000L, "description1 example", LocalDate.now(), 50.3f, 5.3f, AccommodationClass.COMFORT, AccommodationCondition.GOOD, AccommodationType.APARTMENT);
-        Accommodation accommodation2 = new Accommodation(60000L, "description2 example", LocalDate.now(), 70.3f, 6.3f, AccommodationClass.ELITE, AccommodationCondition.PERFECT, AccommodationType.HOUSE);
-        Accommodation accommodation3 = new Accommodation(70000L, "description3 example", LocalDate.now(), 90.3f, 7.3f, AccommodationClass.BUSINESS, AccommodationCondition.SATISFACTORY, AccommodationType.OFFICE);
+        Accommodation accommodation1 = Accommodation.builder()
+                .price(50000L)
+                .description("Lovely family house...")
+                .buildIn(LocalDate.now())
+                .squareMeterPrice(50.7F)
+                .distanceToCityCenter(9.1F)
+                .accommodationClass(AccommodationClass.COMFORT)
+                .accommodationCondition(AccommodationCondition.GOOD)
+                .accommodationType(AccommodationType.HOUSE)
+                .location(locations.get(3))
+                .roomList(Arrays.asList(rooms.get(0), rooms.get(1)))
+                .city(cities.get(0))
+                .build();
 
-        accommodation1.setLocation(locations.get(3));
-        accommodation1.getRoomList().add(rooms.get(0));
+        Accommodation accommodation2 = Accommodation.builder()
+                .price(60000L)
+                .description("Decent office for your business...")
+                .buildIn(LocalDate.now())
+                .squareMeterPrice(50.7F)
+                .distanceToCityCenter(3.3F)
+                .accommodationClass(AccommodationClass.BUSINESS)
+                .accommodationCondition(AccommodationCondition.SATISFACTORY)
+                .accommodationType(AccommodationType.OFFICE)
+                .location(locations.get(4))
+                .roomList(Arrays.asList(rooms.get(2), rooms.get(3)))
+                .city(cities.get(1))
+                .build();
 
-        accommodation2.setLocation(locations.get(4));
-        accommodation2.getRoomList().add(rooms.get(1));
+        Accommodation accommodation3 = Accommodation.builder()
+                .price(70000L)
+                .description("Luxurious apartment...")
+                .buildIn(LocalDate.now())
+                .squareMeterPrice(50.7F)
+                .distanceToCityCenter(2.7F)
+                .accommodationClass(AccommodationClass.ELITE)
+                .accommodationCondition(AccommodationCondition.PERFECT)
+                .accommodationType(AccommodationType.APARTMENT)
+                .location(locations.get(5))
+                .roomList(Arrays.asList(rooms.get(4), rooms.get(5)))
+                .city(cities.get(2))
+                .build();
 
-        accommodation3.setLocation(locations.get(5));
-        accommodation3.getRoomList().add(rooms.get(2));
         accommodations.addAll(Stream.of(accommodation1, accommodation2, accommodation3)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }

@@ -2,6 +2,7 @@ package com.shymoniak.entity;
 
 import com.shymoniak.entity.enums.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "accommodation")
@@ -49,7 +51,6 @@ public class Accommodation {
     private AccommodationType accommodationType;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name="room_id", referencedColumnName="accommodation_id")
     private List<Room> roomList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -59,15 +60,4 @@ public class Accommodation {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id")
     private City city;
-
-    public Accommodation(Long price, String description, LocalDate buildIn, Float squareMeterPrice, Float distanceToCityCenter, AccommodationClass accommodationClass, AccommodationCondition accommodationCondition, AccommodationType accommodationType) {
-        this.price = price;
-        this.description = description;
-        this.buildIn = buildIn;
-        this.squareMeterPrice = squareMeterPrice;
-        this.distanceToCityCenter = distanceToCityCenter;
-        this.accommodationClass = accommodationClass;
-        this.accommodationCondition = accommodationCondition;
-        this.accommodationType = accommodationType;
-    }
 }

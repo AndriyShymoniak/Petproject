@@ -1,6 +1,7 @@
 package com.shymoniak.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "city")
@@ -22,14 +24,9 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Location centerLocationId;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Location> locationList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "city")
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Accommodation> accommodationList = new ArrayList<>();
-
-    public City(String cityName, Location centerLocationId) {
-        this.cityName = cityName;
-        this.centerLocationId = centerLocationId;
-    }
 }
