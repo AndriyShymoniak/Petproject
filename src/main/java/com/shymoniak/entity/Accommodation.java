@@ -51,6 +51,7 @@ public class Accommodation {
     private AccommodationType accommodationType;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "accommodation_id")
     private List<Room> roomList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -45,7 +48,7 @@ class AccommodationApplicationTests {
     @Autowired
     private LocationRepository locationRepository;
 
-    @BeforeEach
+//    @BeforeEach
     public void createInitialDbRecords() {
         generateRoomList();
         generateLocationList();
@@ -79,15 +82,15 @@ class AccommodationApplicationTests {
     private void generateCityList() {
         City city1 = City.builder()
                 .cityName("Lviv")
-                .locationList(Arrays.asList(locations.get(0), locations.get(1)))
+                .centerLocation(locations.get(0))
                 .build();
         City city2 = City.builder()
                 .cityName("Kyiv")
-                .locationList(Arrays.asList(locations.get(2), locations.get(3)))
+                .centerLocation(locations.get(2))
                 .build();
         City city3 = City.builder()
                 .cityName("Odessa")
-                .locationList(Arrays.asList(locations.get(4), locations.get(5)))
+                .centerLocation(locations.get(4))
                 .build();
 
         cities.addAll(Stream.of(city1, city2, city3)
@@ -137,27 +140,53 @@ class AccommodationApplicationTests {
                 .city(cities.get(2))
                 .build();
 
-        accommodations.addAll(Stream.of(accommodation1, accommodation2, accommodation3)
+        Accommodation accommodation4 = Accommodation.builder()
+                .price(80000L)
+                .description("Luxurious apartment...")
+                .buildIn(LocalDate.now())
+                .squareMeterPrice(50.7F)
+                .distanceToCityCenter(2.7F)
+                .accommodationClass(AccommodationClass.ELITE)
+                .accommodationCondition(AccommodationCondition.PERFECT)
+                .accommodationType(AccommodationType.APARTMENT)
+                .location(locations.get(5))
+                .roomList(Arrays.asList(rooms.get(4), rooms.get(5)))
+                .city(cities.get(2))
+                .build();
+        accommodations.addAll(Stream.of(accommodation1, accommodation2, accommodation3, accommodation4)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     @Test
     public void locationRepositoryTest() {
+        createInitialDbRecords();
         locationRepository.saveAll(locations);
+        List<Location> receivedLocations = locationRepository.findAll();
+        assertFalse(CollectionUtils.isEmpty(receivedLocations));
     }
 
     @Test
     public void cityRepositoryTest() {
+        createInitialDbRecords();
         cityRepository.saveAll(cities);
+        List<City> receivedCities = cityRepository.findAll();
+        assertFalse(CollectionUtils.isEmpty(receivedCities));
     }
 
     @Test
     public void roomRepositoryTest() {
+        createInitialDbRecords();
         roomRepository.saveAll(rooms);
+        List<Room> receivedRooms = roomRepository.findAll();
+        assertFalse(CollectionUtils.isEmpty(receivedRooms));
+
     }
 
     @Test
     public void accommodationRepositoryTest() {
+        createInitialDbRecords();
         accommodationRepository.saveAll(accommodations);
+        List<Accommodation> receivedAccommodations = accommodationRepository.findAll();
+        assertFalse(CollectionUtils.isEmpty(receivedAccommodations));
     }
 }

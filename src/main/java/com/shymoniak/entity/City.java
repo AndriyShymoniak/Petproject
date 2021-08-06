@@ -24,9 +24,7 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Location> locationList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Accommodation> accommodationList = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_center_location")
+    private Location centerLocation;
 }
