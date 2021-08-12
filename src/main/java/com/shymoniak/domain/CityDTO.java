@@ -1,6 +1,6 @@
 package com.shymoniak.domain;
 
-import com.shymoniak.entity.Location;
+import com.shymoniak.entity.LocationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +16,5 @@ import java.util.List;
 public class CityDTO {
     private Long cityId;
     private String cityName;
-    private List<Location> locationList = new ArrayList<>();
+    private List<LocationEntity> locationEntityList = new ArrayList<>();
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "accommodation")
-public class Accommodation {
+public class AccommodationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "accommodation_id")
@@ -52,13 +52,13 @@ public class Accommodation {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "accommodation_id")
-    private List<Room> roomList = new ArrayList<>();
+    private List<RoomEntity> roomEntityList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
-    private Location location;
+    private LocationEntity locationEntity;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id")
-    private City city;
+    private CityEntity cityEntity;
 }

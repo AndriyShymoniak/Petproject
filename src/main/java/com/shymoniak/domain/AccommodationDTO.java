@@ -1,8 +1,8 @@
 package com.shymoniak.domain;
 
-import com.shymoniak.entity.City;
-import com.shymoniak.entity.Location;
-import com.shymoniak.entity.Room;
+import com.shymoniak.entity.CityEntity;
+import com.shymoniak.entity.LocationEntity;
+import com.shymoniak.entity.RoomEntity;
 import com.shymoniak.entity.enums.AccommodationClass;
 import com.shymoniak.entity.enums.AccommodationCondition;
 import com.shymoniak.entity.enums.AccommodationType;
@@ -29,7 +29,7 @@ public class AccommodationDTO {
     private AccommodationClass accommodationClass;
     private AccommodationCondition accommodationCondition;
     private AccommodationType accommodationType;
-    private List<Room> roomList = new ArrayList<>();
-    private Location location;
-    private City city;
+    private List<RoomEntity> roomEntityList = new ArrayList<>();
+    private LocationEntity locationEntity;
+    private CityEntity cityEntity;
 }

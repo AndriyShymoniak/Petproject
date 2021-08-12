@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "location")
-public class Location {
+public class LocationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "location_id")
@@ -28,5 +28,5 @@ public class Location {
     private String latitude;
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Accommodation> accommodationList = new ArrayList<>();
+    private List<AccommodationEntity> accommodationEntityList = new ArrayList<>();
 }
