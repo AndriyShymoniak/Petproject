@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationServiceImpl implements LocationService {
@@ -38,8 +39,10 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public void deleteLocationById(Long id) {
+    public LocationDTO deleteLocationById(Long id) {
+        Optional<LocationEntity> optionalLocation = locationRepository.findById(id);
         locationRepository.deleteById(id);
+        return mapper.map(optionalLocation.get(), LocationDTO.class);
     }
 
     @Override

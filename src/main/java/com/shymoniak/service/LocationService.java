@@ -11,7 +11,7 @@ public interface LocationService {
 
     List<LocationDTO> findAllCities();
 
-    void deleteLocationById(Long id);
+    LocationDTO deleteLocationById(Long id);
 
     LocationDTO updateLocation(LocationDTO locationDTO);
 }

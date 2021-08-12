@@ -11,7 +11,7 @@ public interface CityService {
 
     List<CityDTO> findAllCities();
 
-    void deleteCityById(Long id);
+    CityDTO deleteCityById(Long id);
 
     CityDTO updateCity(CityDTO cityDTO);
 }

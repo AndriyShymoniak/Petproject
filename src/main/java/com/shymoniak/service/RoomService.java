@@ -11,7 +11,7 @@ public interface RoomService {
 
     List<RoomDTO> findAllCities();
 
-    void deleteRoomById(Long id);
+    RoomDTO deleteRoomById(Long id);
 
     RoomDTO updateRoom(RoomDTO roomDTO);
 }

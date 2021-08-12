@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccommodationServiceImpl implements AccommodationService {
@@ -39,8 +40,10 @@ public class AccommodationServiceImpl implements AccommodationService {
     }
 
     @Override
-    public void deleteAccommodationById(Long id) {
+    public AccommodationDTO deleteAccommodationById(Long id) {
+        Optional<AccommodationEntity> optionalAccommodation = accommodationRepository.findById(id);
         accommodationRepository.deleteById(id);
+        return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
     }
 
     @Override

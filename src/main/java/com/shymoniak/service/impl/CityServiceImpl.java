@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityServiceImpl implements CityService {
@@ -39,8 +40,10 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void deleteCityById(Long id) {
+    public CityDTO deleteCityById(Long id) {
+        Optional<CityEntity> optionalCity = cityRepository.findById(id);
         cityRepository.deleteById(id);
+        return mapper.map(optionalCity.get(), CityDTO.class);
     }
 
     @Override
