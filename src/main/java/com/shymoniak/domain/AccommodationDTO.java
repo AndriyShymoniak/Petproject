@@ -2,6 +2,7 @@ package com.shymoniak.domain;
 
 import com.shymoniak.entity.CityEntity;
 import com.shymoniak.entity.LocationEntity;
+import com.shymoniak.entity.MediaEntity;
 import com.shymoniak.entity.RoomEntity;
 import com.shymoniak.entity.enums.AccommodationClass;
 import com.shymoniak.entity.enums.AccommodationCondition;
@@ -22,14 +23,17 @@ import java.util.List;
 public class AccommodationDTO {
     private Long accommodationId;
     private Long price;
+    private String currency;
     private String description;
     private LocalDate buildIn;
+    private Float totalArea;
     private Float squareMeterPrice;
     private Float distanceToCityCenter;
     private AccommodationClass accommodationClass;
     private AccommodationCondition accommodationCondition;
     private AccommodationType accommodationType;
-    private List<RoomEntity> roomEntityList = new ArrayList<>();
-    private LocationEntity locationEntity;
-    private CityEntity cityEntity;
+    private LocationDTO locationEntity;
+    private CityDTO cityEntity;
+    private List<RoomDTO> roomEntityList = new ArrayList<>();
+    private List<MediaDTO> mediaEntityList = new ArrayList<>();
 }

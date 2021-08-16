@@ -1,7 +1,6 @@
 package com.shymoniak.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.shymoniak.entity.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,10 +57,6 @@ public class AccommodationEntity {
     @Enumerated(EnumType.STRING)
     private AccommodationType accommodationType;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "accommodation_id")
-    private List<RoomEntity> roomEntityList = new ArrayList<>();
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     @JsonBackReference
@@ -70,4 +65,12 @@ public class AccommodationEntity {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id")
     private CityEntity cityEntity;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "accommodation_id")
+    private List<RoomEntity> roomEntityList = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "accommodation_id")
+    private List<MediaEntity> mediaEntityList = new ArrayList<>();
 }

@@ -17,5 +17,5 @@ public class LocationDTO {
     private Long locationId;
     private String longitude;
     private String latitude;
-    private List<AccommodationEntity> accommodationEntityList = new ArrayList<>();
+    private List<AccommodationDTO> accommodationEntityList = new ArrayList<>();
 }

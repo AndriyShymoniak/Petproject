@@ -16,5 +16,5 @@ import java.util.List;
 public class CityDTO {
     private Long cityId;
     private String cityName;
-    private List<LocationEntity> locationEntityList = new ArrayList<>();
+    private List<LocationDTO> locationEntityList = new ArrayList<>();
 }
