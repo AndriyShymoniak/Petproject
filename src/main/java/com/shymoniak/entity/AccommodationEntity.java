@@ -1,6 +1,5 @@
 package com.shymoniak.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.shymoniak.entity.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
