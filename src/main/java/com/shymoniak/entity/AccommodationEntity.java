@@ -1,5 +1,7 @@
 package com.shymoniak.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.shymoniak.entity.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,6 +58,7 @@ public class AccommodationEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
+    @JsonBackReference
     private LocationEntity locationEntity;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -30,7 +30,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public LocationDTO findLocationById(Long id) {
-        return mapper.map(locationRepository.findById(id), LocationDTO.class);
+        return mapper.map(locationRepository.findById(id).get(), LocationDTO.class);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CityDTO findCityById(Long id) {
-        return mapper.map(cityRepository.findById(id), CityDTO.class);
+        return mapper.map(cityRepository.findById(id).get(), CityDTO.class);
     }
 
     @Override

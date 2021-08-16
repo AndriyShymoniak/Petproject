@@ -31,7 +31,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 
     @Override
     public AccommodationDTO findAccommodationById(Long id) {
-        return mapper.map(accommodationRepository.findById(id), AccommodationDTO.class);
+        return mapper.map(accommodationRepository.findById(id).get(), AccommodationDTO.class);
     }
 
     @Override

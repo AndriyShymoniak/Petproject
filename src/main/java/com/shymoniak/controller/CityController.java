@@ -20,22 +20,27 @@ public class CityController {
     }
 
     @GetMapping({"", "/"})
-    public ResponseEntity<List<CityDTO>> showAllAccommodations() {
+    public ResponseEntity<List<CityDTO>> showAllCities() {
         return new ResponseEntity<>(cityService.findAllCities(), HttpStatus.OK);
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<CityDTO> showCitiyById(@RequestParam Long id) {
+        return new ResponseEntity<>(cityService.findCityById(id), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<CityDTO> addNewAccommodation(@RequestBody CityDTO city) {
+    public ResponseEntity<CityDTO> addNewCity(@RequestBody CityDTO city) {
         return new ResponseEntity<>(cityService.addCity(city), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<CityDTO> updatecity(@RequestBody CityDTO city) {
+    public ResponseEntity<CityDTO> updateCity(@RequestBody CityDTO city) {
         return new ResponseEntity<>(cityService.updateCity(city), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<CityDTO> deleteAccommodation(@RequestParam Long id) {
+    public ResponseEntity<CityDTO> deleteCity(@RequestParam Long id) {
         return new ResponseEntity<>(cityService.deleteCityById(id), HttpStatus.OK);
     }
 }

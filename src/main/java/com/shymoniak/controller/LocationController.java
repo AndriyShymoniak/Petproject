@@ -20,22 +20,27 @@ public class LocationController {
     }
 
     @GetMapping({"", "/"})
-    public ResponseEntity<List<LocationDTO>> showAllAccommodations() {
+    public ResponseEntity<List<LocationDTO>> showAllLocations() {
         return new ResponseEntity<>(locationService.findAllCities(), HttpStatus.OK);
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<LocationDTO> showALocationById(@RequestParam Long id) {
+        return new ResponseEntity<>(locationService.findLocationById(id), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<LocationDTO> addNewAccommodation(@RequestBody LocationDTO locationDTO) {
+    public ResponseEntity<LocationDTO> addNewLocation(@RequestBody LocationDTO locationDTO) {
         return new ResponseEntity<>(locationService.addLocation(locationDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<LocationDTO> updateAccommodation(@RequestBody LocationDTO locationDTO) {
+    public ResponseEntity<LocationDTO> updateLocation(@RequestBody LocationDTO locationDTO) {
         return new ResponseEntity<>(locationService.updateLocation(locationDTO), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<LocationDTO> deleteAccommodation(@RequestParam Long id) {
+    public ResponseEntity<LocationDTO> deleteLocation(@RequestParam Long id) {
         return new ResponseEntity<>(locationService.deleteLocationById(id), HttpStatus.OK);
     }
 }

@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDTO findRoomById(Long id) {
-        return mapper.map(roomRepository.findById(id), RoomDTO.class);
+        return mapper.map(roomRepository.findById(id).get(), RoomDTO.class);
     }
 
     @Override

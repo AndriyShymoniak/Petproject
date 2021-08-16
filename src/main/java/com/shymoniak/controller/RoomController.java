@@ -20,22 +20,27 @@ public class RoomController {
     }
 
     @GetMapping({"", "/"})
-    public ResponseEntity<List<RoomDTO>> showAllAccommodations() {
+    public ResponseEntity<List<RoomDTO>> showAllRooms() {
         return new ResponseEntity<>(roomService.findAllCities(), HttpStatus.OK);
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<RoomDTO> showRoomById(@RequestParam Long id) {
+        return new ResponseEntity<>(roomService.findRoomById(id), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<RoomDTO> addNewAccommodation(@RequestBody RoomDTO accommodation) {
+    public ResponseEntity<RoomDTO> addNewRoom(@RequestBody RoomDTO accommodation) {
         return new ResponseEntity<>(roomService.addRoom(accommodation), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<RoomDTO> updateAccommodation(@RequestBody RoomDTO accommodation) {
+    public ResponseEntity<RoomDTO> updateRoom(@RequestBody RoomDTO accommodation) {
         return new ResponseEntity<>(roomService.updateRoom(accommodation), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<RoomDTO> deleteAccommodation(@RequestParam Long id) {
+    public ResponseEntity<RoomDTO> deleteRoom(@RequestParam Long id) {
         return new ResponseEntity<>(roomService.deleteRoomById(id), HttpStatus.OK);
     }
 }

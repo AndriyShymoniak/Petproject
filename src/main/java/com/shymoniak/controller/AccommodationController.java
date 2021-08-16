@@ -24,6 +24,11 @@ public class AccommodationController {
         return new ResponseEntity<>(accommodationService.findAllAccommodations(), HttpStatus.OK);
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<AccommodationDTO> showAccommodationById(@RequestParam Long id) {
+        return new ResponseEntity<>(accommodationService.findAccommodationById(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<AccommodationDTO> addNewAccommodation(@RequestBody AccommodationDTO accommodation) {
         return new ResponseEntity<>(accommodationService.addAccommodation(accommodation), HttpStatus.CREATED);

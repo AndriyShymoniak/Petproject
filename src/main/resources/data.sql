@@ -23,18 +23,18 @@ VALUES (1, 'Lviv',   1001),
 
 INSERT INTO accommodation(accommodation_id, accommodation_class, accommodation_condition, accommodation_type, built_in,
                           description, distance_to_city_center, price, square_meter_price, city_id, location_id)
-VALUES (1, 'ECONOMIC', 'Unsatisfactory', 'Apartment', CURRENT_TIMESTAMP, 'Affordable apartment',                 4.7, 15000,  375, 1, 1),
-       (2, 'ECONOMIC', 'Unsatisfactory', 'HOUSE',     CURRENT_TIMESTAMP, 'Affordable apartment',                 5.3, 16000,  360, 1, 2),
-       (3, 'ECONOMIC', 'SATISFACTORY',   'Apartment', CURRENT_TIMESTAMP, 'Affordable apartment',                 3.3, 19000,  397, 1, 3),
-       (4, 'COMFORT',  'SATISFACTORY',   'Apartment', CURRENT_TIMESTAMP, 'Comfortable apartment',                4.9, 24000,  410, 1, 4),
+VALUES (1, 'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',                 4.7, 15000,  375, 1, 1),
+       (2, 'ECONOMIC', 'UNSATISFACTORY', 'HOUSE',     CURRENT_TIMESTAMP, 'Affordable apartment',                 5.3, 16000,  360, 1, 2),
+       (3, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',                 3.3, 19000,  397, 1, 3),
+       (4, 'COMFORT',  'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',                4.9, 24000,  410, 1, 4),
        (5, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',               6.1, 45000,  400, 1, 5),
-       (6, 'COMFORT',  'GOOD',           'Apartment', CURRENT_TIMESTAMP, 'Comfortable apartment',                2.1, 40000,  450, 1, 6),
+       (6, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',                2.1, 40000,  450, 1, 6),
        (7, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 3.4, 110000, 400, 1, 7),
        (8, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 4.2, 120000, 430, 1, 8),
        (9, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 1.2, 150000, 450, 1, 9),
        (10, 'ELITE',   'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',               5.9, 180000, 600, 1, 10),
        (11, 'ELITE',   'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                   7.4, 300000, 750, 1, 11),
-       (12, 'ELITE',   'PERFECT',        'Apartment', CURRENT_TIMESTAMP, 'Luxurious apartment...',               0.4, 160000, 640, 1, 12);
+       (12, 'ELITE',   'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP, 'Luxurious apartment...',               0.4, 160000, 640, 1, 12);
 
 INSERT INTO room (room_id, square, floor, accommodation_id)
 VALUES (1,  20, 5, 1),    (2,  15, 2, 1),
