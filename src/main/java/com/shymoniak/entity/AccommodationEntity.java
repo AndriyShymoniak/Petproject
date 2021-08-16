@@ -28,11 +28,17 @@ public class AccommodationEntity {
     @Column(name = "price")
     private Long price;
 
+    @Column(name = "currency", length = 3)
+    private String currency;
+
     @Column(name = "description")
     private String description;
 
     @Column(name = "built_in")
     private LocalDate buildIn;
+
+    @Column(name = "total_area")
+    private Float totalArea;
 
     @Column(name = "square_meter_price")
     private Float squareMeterPrice;
