@@ -1,5 +1,7 @@
 package com.shymoniak.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.shymoniak.entity.CityEntity;
 import com.shymoniak.entity.LocationEntity;
 import com.shymoniak.entity.MediaEntity;
@@ -32,6 +34,8 @@ public class AccommodationDTO {
     private AccommodationClass accommodationClass;
     private AccommodationCondition accommodationCondition;
     private AccommodationType accommodationType;
+
+    @JsonBackReference
     private LocationDTO locationEntity;
     private CityDTO cityEntity;
     private List<RoomDTO> roomEntityList = new ArrayList<>();

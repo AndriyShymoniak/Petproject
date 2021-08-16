@@ -30,6 +30,5 @@ public class LocationEntity {
     private String latitude;
 
     @OneToMany(mappedBy = "locationEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<AccommodationEntity> accommodationEntityList = new ArrayList<>();
 }
