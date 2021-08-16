@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.internal.LinkedTreeMap;
+import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.exception.ApiRequestException;
 import org.springframework.stereotype.Component;
 
@@ -19,18 +20,14 @@ import java.util.*;
 public class CurrencyConverter {
     public Map<String, Double> getExchangeValues() {
         try {
-            URL url = new URL("https://api.exchangerate.host/latest");
+            URL url = new URL(ApplicationConstants.EXCHANGER_API_URL);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
             request.connect();
-            JsonParser jp = new JsonParser();
-            JsonElement root =
-                    jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
             JsonObject jsonObj = root.getAsJsonObject();
-            return new Gson().fromJson(jsonObj.get("rates").toString(),
-                    LinkedTreeMap.class);
+            return new Gson().fromJson(jsonObj.get(ApplicationConstants.EXCHANGER_RATES).toString(), LinkedTreeMap.class);
         } catch (IOException ex) {
-            throw new ApiRequestException("Couldn't get response from " +
-                    "https://exchangerate.host");
+            throw new ApiRequestException("Couldn't get response from " + "https://exchangerate.host");
         }
     }
 }
