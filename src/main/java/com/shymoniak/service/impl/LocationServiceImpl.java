@@ -1,7 +1,9 @@
 package com.shymoniak.service.impl;
 
+import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.domain.LocationDTO;
 import com.shymoniak.entity.LocationEntity;
+import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.LocationRepository;
 import com.shymoniak.service.LocationService;
 import com.shymoniak.utility.ObjectMapperUtils;
@@ -30,7 +32,12 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public LocationDTO findLocationById(Long id) {
-        return mapper.map(locationRepository.findById(id).get(), LocationDTO.class);
+        Optional<LocationEntity> optionalLocation = locationRepository.findById(id);
+        if (optionalLocation.isPresent()){
+            return mapper.map(optionalLocation.get(), LocationDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override

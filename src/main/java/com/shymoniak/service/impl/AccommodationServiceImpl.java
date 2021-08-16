@@ -1,7 +1,9 @@
 package com.shymoniak.service.impl;
 
+import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.entity.AccommodationEntity;
+import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.AccommodationRepository;
 import com.shymoniak.service.AccommodationService;
 import com.shymoniak.utility.ObjectMapperUtils;
@@ -13,8 +15,8 @@ import java.util.Optional;
 
 @Service
 public class AccommodationServiceImpl implements AccommodationService {
-    private AccommodationRepository accommodationRepository;
-    private ObjectMapperUtils mapper;
+    private final AccommodationRepository accommodationRepository;
+    private final ObjectMapperUtils mapper;
 
     @Autowired
     public AccommodationServiceImpl(AccommodationRepository accommodationRepository,
@@ -31,7 +33,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 
     @Override
     public AccommodationDTO findAccommodationById(Long id) {
-        return mapper.map(accommodationRepository.findById(id).get(), AccommodationDTO.class);
+        Optional<AccommodationEntity> optionalAccommodation = accommodationRepository.findById(id);
+        if (optionalAccommodation.isPresent()){
+            return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override
@@ -42,17 +49,17 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public AccommodationDTO deleteAccommodationById(Long id) {
         Optional<AccommodationEntity> optionalAccommodation = accommodationRepository.findById(id);
-        accommodationRepository.deleteById(id);
-        return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
+        if (optionalAccommodation.isPresent()){
+            accommodationRepository.deleteById(id);
+            return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override
     public AccommodationDTO updateAccommodation(AccommodationDTO accommodation) {
         accommodationRepository.save(mapper.map(accommodation, AccommodationEntity.class));
         return accommodation;
-    }
-
-    private boolean isPresentInDB(Long id) {
-        return accommodationRepository.findById(id) != null;
     }
 }

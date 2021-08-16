@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Service
 public class ExchangeServiceImpl implements ExchangeService {
-    private CurrencyConverter converter;
+    private final CurrencyConverter converter;
 
     @Autowired
     public ExchangeServiceImpl(CurrencyConverter converter) {

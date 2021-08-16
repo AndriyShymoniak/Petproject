@@ -1,7 +1,9 @@
 package com.shymoniak.service.impl;
 
+import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.domain.CityDTO;
 import com.shymoniak.entity.CityEntity;
+import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.CityRepository;
 import com.shymoniak.service.CityService;
 import com.shymoniak.utility.ObjectMapperUtils;
@@ -22,7 +24,6 @@ public class CityServiceImpl implements CityService {
         this.mapper = mapper;
     }
 
-    //todo return object instead void
     @Override
     public CityDTO addCity(CityDTO cityDTO) {
         cityRepository.save(mapper.map(cityDTO, CityEntity.class));
@@ -31,7 +32,12 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CityDTO findCityById(Long id) {
-        return mapper.map(cityRepository.findById(id).get(), CityDTO.class);
+        Optional<CityEntity> optionalCity = cityRepository.findById(id);
+        if (optionalCity.isPresent()) {
+            return mapper.map(optionalCity.get(), CityDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override
@@ -42,8 +48,12 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityDTO deleteCityById(Long id) {
         Optional<CityEntity> optionalCity = cityRepository.findById(id);
-        cityRepository.deleteById(id);
-        return mapper.map(optionalCity.get(), CityDTO.class);
+        if (optionalCity.isPresent()) {
+            cityRepository.deleteById(id);
+            return mapper.map(optionalCity.get(), CityDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override

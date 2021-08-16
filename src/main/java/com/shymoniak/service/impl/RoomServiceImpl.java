@@ -1,7 +1,9 @@
 package com.shymoniak.service.impl;
 
+import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.domain.RoomDTO;
 import com.shymoniak.entity.RoomEntity;
+import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.RoomRepository;
 import com.shymoniak.service.RoomService;
 import com.shymoniak.utility.ObjectMapperUtils;
@@ -30,7 +32,12 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDTO findRoomById(Long id) {
-        return mapper.map(roomRepository.findById(id).get(), RoomDTO.class);
+        Optional<RoomEntity> optionalRoom = roomRepository.findById(id);
+        if (optionalRoom.isPresent()) {
+            return mapper.map(optionalRoom.get(), RoomDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override
@@ -41,8 +48,12 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public RoomDTO deleteRoomById(Long id) {
         Optional<RoomEntity> optionalRoom = roomRepository.findById(id);
-        roomRepository.deleteById(id);
-        return mapper.map(optionalRoom.get(), RoomDTO.class);
+        if (optionalRoom.isPresent()) {
+            roomRepository.deleteById(id);
+            return mapper.map(optionalRoom.get(), RoomDTO.class);
+        } else {
+            throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
+        }
     }
 
     @Override
