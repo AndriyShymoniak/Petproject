@@ -5,7 +5,7 @@ import com.shymoniak.entity.enums.AccommodationClass;
 import com.shymoniak.entity.enums.AccommodationCondition;
 import com.shymoniak.entity.enums.AccommodationType;
 import com.shymoniak.entity.enums.SearchOperation;
-import com.shymoniak.search.SearchableFieldAnnotation;
+import com.shymoniak.utility.search.SearchableFieldAnnotation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

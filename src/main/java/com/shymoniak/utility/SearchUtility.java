@@ -1,8 +1,8 @@
 package com.shymoniak.utility;
 
-import com.shymoniak.search.CustomSpecification;
-import com.shymoniak.search.SearchCriteria;
-import com.shymoniak.search.SearchableFieldAnnotationProcessor;
+import com.shymoniak.utility.search.CustomSpecification;
+import com.shymoniak.utility.search.SearchCriteria;
+import com.shymoniak.utility.search.SearchableFieldAnnotationProcessor;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;

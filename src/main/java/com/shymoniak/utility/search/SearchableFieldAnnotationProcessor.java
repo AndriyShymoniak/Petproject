@@ -1,4 +1,4 @@
-package com.shymoniak.search;
+package com.shymoniak.utility.search;
 
 import com.shymoniak.entity.enums.SearchOperation;
 import org.springframework.util.ReflectionUtils;
