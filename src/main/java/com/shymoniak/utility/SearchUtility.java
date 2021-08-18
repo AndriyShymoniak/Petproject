@@ -3,7 +3,9 @@ package com.shymoniak.utility;
 import com.shymoniak.utility.search.CustomSpecification;
 import com.shymoniak.utility.search.SearchCriteria;
 import com.shymoniak.utility.search.SearchableFieldAnnotationProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,18 +13,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class SearchUtility<T> {
 
-    private SearchableFieldAnnotationProcessor<T> annotationProcessor = new SearchableFieldAnnotationProcessor<>();
+    private SearchableFieldAnnotationProcessor<T> annotationProcessor;
 
-    // TODO: 2021-08-18 refactor
+    @Autowired
+    public SearchUtility(SearchableFieldAnnotationProcessor<T> annotationProcessor) {
+        this.annotationProcessor = annotationProcessor;
+    }
+
+    /**
+     * Forms Specification, based on objects configuration
+     *
+     * @param t - instance of searchable Class
+     * @return
+     */
     public Specification formSpecification(T t) {
-        CustomSpecification<T> customSpecification = null;
         Map<String, List<CustomSpecification<T>>> specificationMap = generateSpecificationMap(t);
-
+        CustomSpecification<T> customSpecification = null;
         for (String key : specificationMap.keySet()) {
             List<CustomSpecification<T>> sameKeySpecifications = specificationMap.get(key);
-            if (customSpecification == null){
+            if (customSpecification == null) {
                 customSpecification = (disjunctSpecifications(sameKeySpecifications));
             } else {
                 customSpecification.and(disjunctSpecifications(sameKeySpecifications));
@@ -31,10 +43,18 @@ public class SearchUtility<T> {
         return Specification.where(customSpecification);
     }
 
-    // TODO: 2021-08-18 refactor
+    /**
+     * If one field has multiple values on it - performs logical "OR" operation
+     *
+     * @param specificationList
+     * @return
+     */
     private CustomSpecification<T> disjunctSpecifications(List<CustomSpecification<T>> specificationList) {
-        CustomSpecification<T> spec = specificationList.get(0);
+        CustomSpecification<T> spec = null;
         for (CustomSpecification<T> customSpecification : specificationList) {
+            if (spec == null) {
+                spec = customSpecification;
+            }
             spec.or(customSpecification);
         }
         return spec;

@@ -1,12 +1,14 @@
 package com.shymoniak.utility.search;
 
 import com.shymoniak.entity.enums.SearchOperation;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class SearchableFieldAnnotationProcessor<T> {
 
     // TODO: 2021-08-18 refactor

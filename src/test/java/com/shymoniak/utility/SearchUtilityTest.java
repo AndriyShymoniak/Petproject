@@ -22,7 +22,9 @@ public class SearchUtilityTest {
 
     @Autowired
     private AccommodationRepository repository;
-    SearchUtility<AccommodationDTO> searchUtility = new SearchUtility<>();
+
+    @Autowired
+    SearchUtility<AccommodationDTO> searchUtility;
 
     @Test
     public void testSearch(){
