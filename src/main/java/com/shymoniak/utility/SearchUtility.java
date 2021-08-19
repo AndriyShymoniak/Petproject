@@ -1,85 +1,89 @@
 package com.shymoniak.utility;
 
-import com.shymoniak.utility.search.CustomSpecification;
-import com.shymoniak.utility.search.SearchCriteria;
-import com.shymoniak.utility.search.SearchableFieldAnnotationProcessor;
+import com.shymoniak.annotation.SearchableFieldAnnotation;
+import com.shymoniak.exception.ApiRequestException;
+import com.shymoniak.utility.search.SpecificationFormer;
+import com.shymoniak.utility.search.entity.DynamicClass;
+import com.shymoniak.utility.search.entity.DynamicField;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component
 public class SearchUtility<T> {
 
-    private SearchableFieldAnnotationProcessor<T> annotationProcessor;
+    private SpecificationFormer<T> specificationFormer;
 
     @Autowired
-    public SearchUtility(SearchableFieldAnnotationProcessor<T> annotationProcessor) {
-        this.annotationProcessor = annotationProcessor;
+    public SearchUtility(SpecificationFormer<T> specificationFormer) {
+        this.specificationFormer = specificationFormer;
     }
 
-    /**
-     * Forms Specification, based on objects configuration
-     *
-     * @param t - instance of searchable Class
-     * @return
-     */
-    public Specification formSpecification(T t) {
-        Map<String, List<CustomSpecification<T>>> specificationMap = generateSpecificationMap(t);
-        CustomSpecification<T> customSpecification = null;
-        for (String key : specificationMap.keySet()) {
-            List<CustomSpecification<T>> sameKeySpecifications = specificationMap.get(key);
-            if (customSpecification == null) {
-                customSpecification = (disjunctSpecifications(sameKeySpecifications));
-            } else {
-                customSpecification.and(disjunctSpecifications(sameKeySpecifications));
-            }
-        }
-        return Specification.where(customSpecification);
+    public DynamicClass generateDynamicClass(T t) {
+        List<DynamicField> dynamicFields = generateDynamicFields(t);
+        String fullClassPath = t.getClass().getCanonicalName().toString();
+        return new DynamicClass(fullClassPath, dynamicFields);
     }
 
-    /**
-     * If one field has multiple values on it - performs logical "OR" operation
-     *
-     * @param specificationList
-     * @return
-     */
-    private CustomSpecification<T> disjunctSpecifications(List<CustomSpecification<T>> specificationList) {
-        CustomSpecification<T> spec = null;
-        for (CustomSpecification<T> customSpecification : specificationList) {
-            if (spec == null) {
-                spec = customSpecification;
+    public T convertToOriginalClass(DynamicClass dynamicClass, T t) {
+        try {
+            List<DynamicField> dynamicFields = dynamicClass.getSourceClassFields();
+            for (DynamicField dynamicField : dynamicFields) {
+                Field originalField = t.getClass().getDeclaredField(dynamicField.getFieldName());
+                Class<?> fieldType = originalField.getType();
+                List<String> values = dynamicField.getValues();
+                originalField.setAccessible(true);
+                if (values != null && !values.isEmpty()) {
+
+                    String value = values.get(0);
+                    if (Integer.class.isAssignableFrom(fieldType)) {
+                        originalField.set(t, Integer.valueOf(value));
+                    } else if (Long.class.isAssignableFrom(fieldType)) {
+                        originalField.set(t, Long.valueOf(value));
+                    } else if (Double.class.isAssignableFrom(fieldType)) {
+                        originalField.set(t, Double.valueOf(value));
+                    } else if (Float.class.isAssignableFrom(fieldType)) {
+                        originalField.set(t, Float.valueOf(value));
+                    } else if (Boolean.class.isAssignableFrom(fieldType)) {
+                        originalField.set(t, Boolean.valueOf(value));
+                    } else {
+                        originalField.set(t, fieldType.cast(value));
+                    }
+                }
             }
-            spec.or(customSpecification);
+            return t;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ApiRequestException("Reflection exeption");
         }
-        return spec;
     }
 
-    /**
-     * This is a map, where specifications are sorted by search field name
-     *
-     * @param t - instance of searchable class
-     * @return
-     */
-    private Map<String, List<CustomSpecification<T>>> generateSpecificationMap(T t) {
-        List<SearchCriteria> criteriaList = annotationProcessor.generateSearchCriteriaList(t);
-        Map<String, List<SearchCriteria>> criteriaMap = criteriaList.stream()
-                .collect(Collectors.groupingBy(SearchCriteria::getKey));
+    public static <T> T instanceOf(Class<T> clazz) throws Exception {
+        return clazz.newInstance();
+    }
 
-        Map<String, List<CustomSpecification<T>>> result = new HashMap<>();
-        for (String key : criteriaMap.keySet()) {
-            List<CustomSpecification<T>> specificationList = new ArrayList<>();
-            List<SearchCriteria> sameKeyCriteria = criteriaMap.get(key);
-            for (SearchCriteria criteria : sameKeyCriteria) {
-                specificationList.add(new CustomSpecification<>(criteria));
+    private List<DynamicField> generateDynamicFields(T t) {
+        List<DynamicField> dynamicFields = new ArrayList<>();
+        Field[] declaredFields = t.getClass().getDeclaredFields();
+        for (Field field : declaredFields) {
+            if (field.isAnnotationPresent(SearchableFieldAnnotation.class)) {
+                // Obtain field type
+                Class<?> fieldType = field.getType();
+                // Obtain field name
+                String fieldName = field.getName();
+                dynamicFields.add(new DynamicField(fieldType.toString(), fieldName));
             }
-            result.put(key, specificationList);
         }
-        return result;
+        return dynamicFields;
+    }
+
+    private <T> T getFieldValue(Object object, String fieldName, Class<T> fieldType) {
+        Field field = ReflectionUtils.findField(object.getClass(), fieldName, fieldType);
+        ReflectionUtils.makeAccessible(field);
+        return (T) ReflectionUtils.getField(field, object);
     }
 }

@@ -1,6 +1,8 @@
 package com.shymoniak.utility.search;
 
 import com.shymoniak.entity.enums.SearchOperation;
+import com.shymoniak.annotation.SearchableFieldAnnotation;
+import com.shymoniak.utility.search.entity.SearchCriteria;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 

@@ -3,6 +3,7 @@ package com.shymoniak.utility.search;
 import com.shymoniak.entity.AccommodationEntity;
 import com.shymoniak.entity.enums.SearchOperation;
 import com.shymoniak.repository.AccommodationRepository;
+import com.shymoniak.utility.search.entity.SearchCriteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

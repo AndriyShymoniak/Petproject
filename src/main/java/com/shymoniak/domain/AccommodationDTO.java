@@ -5,7 +5,7 @@ import com.shymoniak.entity.enums.AccommodationClass;
 import com.shymoniak.entity.enums.AccommodationCondition;
 import com.shymoniak.entity.enums.AccommodationType;
 import com.shymoniak.entity.enums.SearchOperation;
-import com.shymoniak.utility.search.SearchableFieldAnnotation;
+import com.shymoniak.annotation.SearchableFieldAnnotation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class AccommodationDTO {
     @SearchableFieldAnnotation(operation = SearchOperation.EQUALS)
     private String currency;
 
-    @SearchableFieldAnnotation(operation = SearchOperation.BETWEEN)
+//    @SearchableFieldAnnotation(operation = SearchOperation.BETWEEN)
     private LocalDate buildIn;
 
     @SearchableFieldAnnotation(operation = SearchOperation.BETWEEN)

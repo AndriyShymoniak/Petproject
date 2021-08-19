@@ -7,6 +7,8 @@ import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.AccommodationRepository;
 import com.shymoniak.service.AccommodationService;
 import com.shymoniak.utility.ObjectMapperUtils;
+import com.shymoniak.utility.SearchUtility;
+import com.shymoniak.utility.search.entity.DynamicClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,15 @@ import java.util.Optional;
 public class AccommodationServiceImpl implements AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final ObjectMapperUtils mapper;
+    private final SearchUtility<AccommodationDTO> searchUtility;
 
     @Autowired
     public AccommodationServiceImpl(AccommodationRepository accommodationRepository,
-                                    ObjectMapperUtils mapper) {
+                                    ObjectMapperUtils mapper,
+                                    SearchUtility<AccommodationDTO> searchUtility) {
         this.accommodationRepository = accommodationRepository;
         this.mapper = mapper;
+        this.searchUtility = searchUtility;
     }
 
     @Override
@@ -44,6 +49,16 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public List<AccommodationDTO> findAllAccommodations() {
         return mapper.mapAll(accommodationRepository.findAll(), AccommodationDTO.class);
+    }
+
+    @Override
+    public List<AccommodationDTO> findBySearchCriteria() {
+        return null;
+    }
+
+    @Override
+    public DynamicClass sendSearchConfig() {
+        return searchUtility.generateDynamicClass(new AccommodationDTO());
     }
 
     @Override

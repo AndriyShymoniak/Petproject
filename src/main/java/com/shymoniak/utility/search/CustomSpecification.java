@@ -2,6 +2,7 @@ package com.shymoniak.utility.search;
 
 import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.entity.enums.SearchOperation;
+import com.shymoniak.utility.search.entity.SearchCriteria;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;

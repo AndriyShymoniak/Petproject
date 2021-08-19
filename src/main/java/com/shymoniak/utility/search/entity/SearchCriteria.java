@@ -1,4 +1,4 @@
-package com.shymoniak.utility.search;
+package com.shymoniak.utility.search.entity;
 
 import com.shymoniak.entity.enums.SearchOperation;
 import lombok.AllArgsConstructor;
