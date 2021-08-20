@@ -10,6 +10,7 @@ import com.shymoniak.utility.ObjectMapperUtils;
 import com.shymoniak.utility.SearchUtility;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public AccommodationDTO findAccommodationById(Long id) {
         Optional<AccommodationEntity> optionalAccommodation = accommodationRepository.findById(id);
-        if (optionalAccommodation.isPresent()){
+        if (optionalAccommodation.isPresent()) {
             return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
         } else {
             throw new ApiRequestException(ApplicationConstants.ERROR_MESSAGE_RECORD_NOT_FOUND);
@@ -52,8 +53,9 @@ public class AccommodationServiceImpl implements AccommodationService {
     }
 
     @Override
-    public List<AccommodationDTO> findBySearchCriteria() {
-        return null;
+    public List<AccommodationDTO> findBySearchCriteria(DynamicClass dynamicClass) {
+        Specification specification = searchUtility.getDynamicSpecification(dynamicClass, new AccommodationDTO());
+        return mapper.mapAll(accommodationRepository.findAll(specification), AccommodationDTO.class);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public AccommodationDTO deleteAccommodationById(Long id) {
         Optional<AccommodationEntity> optionalAccommodation = accommodationRepository.findById(id);
-        if (optionalAccommodation.isPresent()){
+        if (optionalAccommodation.isPresent()) {
             accommodationRepository.deleteById(id);
             return mapper.map(optionalAccommodation.get(), AccommodationDTO.class);
         } else {

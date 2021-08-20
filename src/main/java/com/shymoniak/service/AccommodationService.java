@@ -12,7 +12,7 @@ public interface AccommodationService {
 
     List<AccommodationDTO> findAllAccommodations();
 
-    List<AccommodationDTO> findBySearchCriteria();
+    List<AccommodationDTO> findBySearchCriteria(DynamicClass dynamicClass);
 
     DynamicClass sendSearchConfig();
 

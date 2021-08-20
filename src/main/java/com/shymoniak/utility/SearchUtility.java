@@ -6,6 +6,7 @@ import com.shymoniak.utility.search.SpecificationFormer;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import com.shymoniak.utility.search.entity.DynamicField;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
@@ -17,15 +18,22 @@ import java.util.List;
 public class SearchUtility<T> {
 
     private SpecificationFormer<T> specificationFormer;
+    private ObjectMapperUtils objectMapperUtils;
 
     @Autowired
-    public SearchUtility(SpecificationFormer<T> specificationFormer) {
+    public SearchUtility(SpecificationFormer<T> specificationFormer, ObjectMapperUtils objectMapperUtils) {
         this.specificationFormer = specificationFormer;
+        this.objectMapperUtils = objectMapperUtils;
+    }
+
+    public Specification getDynamicSpecification(DynamicClass dynamicClass, T t){
+        t = convertToOriginalClass(dynamicClass, t);
+        return specificationFormer.formSpecification(t);
     }
 
     public DynamicClass generateDynamicClass(T t) {
         List<DynamicField> dynamicFields = generateDynamicFields(t);
-        String fullClassPath = t.getClass().getCanonicalName().toString();
+        String fullClassPath = t.getClass().getCanonicalName();
         return new DynamicClass(fullClassPath, dynamicFields);
     }
 
@@ -38,27 +46,18 @@ public class SearchUtility<T> {
                 List<String> values = dynamicField.getValues();
                 originalField.setAccessible(true);
                 if (values != null && !values.isEmpty()) {
-
                     String value = values.get(0);
-                    if (Integer.class.isAssignableFrom(fieldType)) {
-                        originalField.set(t, Integer.valueOf(value));
-                    } else if (Long.class.isAssignableFrom(fieldType)) {
-                        originalField.set(t, Long.valueOf(value));
-                    } else if (Double.class.isAssignableFrom(fieldType)) {
-                        originalField.set(t, Double.valueOf(value));
-                    } else if (Float.class.isAssignableFrom(fieldType)) {
-                        originalField.set(t, Float.valueOf(value));
-                    } else if (Boolean.class.isAssignableFrom(fieldType)) {
-                        originalField.set(t, Boolean.valueOf(value));
-                    } else {
-                        originalField.set(t, fieldType.cast(value));
-                    }
+                    Object map = objectMapperUtils.map(value, fieldType);
+                    originalField.set(t, map);
                 }
             }
             return t;
-        } catch (Exception e) {
+        } catch (NoSuchFieldException e) {
             e.printStackTrace();
-            throw new ApiRequestException("Reflection exeption");
+            throw new ApiRequestException("No such field");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new ApiRequestException("Illegal access");
         }
     }
 

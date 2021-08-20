@@ -2,6 +2,7 @@ package com.shymoniak.controller;
 
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.service.AccommodationService;
+import com.shymoniak.utility.search.entity.DynamicClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,16 @@ public class AccommodationController {
     @GetMapping("/id")
     public ResponseEntity<AccommodationDTO> showAccommodationById(@RequestParam Long id) {
         return new ResponseEntity<>(accommodationService.findAccommodationById(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<AccommodationDTO>> showFilteredAccommodations(@RequestBody DynamicClass dynamicClass) {
+        return new ResponseEntity<>(accommodationService.findBySearchCriteria(dynamicClass), HttpStatus.OK);
+    }
+
+    @GetMapping("/searchConfig")
+    public ResponseEntity<DynamicClass> getSearchConfig() {
+        return new ResponseEntity<>(accommodationService.sendSearchConfig(), HttpStatus.OK);
     }
 
     @PostMapping
