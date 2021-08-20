@@ -11,4 +11,6 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface SearchableFieldAnnotation {
     SearchOperation operation();
+    String [] relatedFields() default {};
+    boolean isRelation() default false;
 }

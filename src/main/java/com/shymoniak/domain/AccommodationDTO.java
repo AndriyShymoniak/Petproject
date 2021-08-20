@@ -23,8 +23,15 @@ public class AccommodationDTO {
     private Long accommodationId;
     private String description;
 
-    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN)
+    @SearchableFieldAnnotation(
+            operation = SearchOperation.BETWEEN,
+            relatedFields = {"priceFrom", "priceTo"}
+    )
     private Long price;
+    @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
+    private Long priceFrom;
+    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
+    private Long priceTo;
 
     @SearchableFieldAnnotation(operation = SearchOperation.EQUALS)
     private String currency;

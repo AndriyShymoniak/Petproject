@@ -2,7 +2,7 @@ package com.shymoniak.utility;
 
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.repository.AccommodationRepository;
-import com.shymoniak.utility.search.SpecificationFormer;
+import com.shymoniak.utility.search.SpecificationBuilder;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import com.shymoniak.utility.search.entity.DynamicField;
 import org.junit.Test;
@@ -14,12 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -33,7 +30,7 @@ public class SearchUtilityTest {
     SearchUtility<AccommodationDTO> searchUtility;
 
     @Autowired
-    SpecificationFormer<AccommodationDTO> specificationFormer;
+    SpecificationBuilder<AccommodationDTO> specificationBuilder;
 
     @Test
     public void testSearch() {
@@ -42,7 +39,7 @@ public class SearchUtilityTest {
                 .price(50000L)
                 .build();
 
-        Specification specification = specificationFormer.formSpecification(accommodationDTO);
+        Specification specification = specificationBuilder.buildSpecification(accommodationDTO);
         List all = repository.findAll(specification);
         System.out.println(all);
     }
@@ -60,12 +57,12 @@ public class SearchUtilityTest {
         DynamicClass dyn = searchUtility.generateDynamicClass(accommodationDTO);
         List<DynamicField> sourceClassFields = dyn.getSourceClassFields();
         DynamicField dynamicField = sourceClassFields.get(0);
-        dynamicField.setValues(values);
+        dynamicField.setValue(values.get(0));
         DynamicClass dynamicClass = new DynamicClass(accommodationDTO.getClass().getCanonicalName(), dyn.getSourceClassFields());
         AccommodationDTO result = searchUtility.convertToOriginalClass(dynamicClass, new AccommodationDTO());
         System.out.println(result);
 
-        Specification specification = specificationFormer.formSpecification(result);
+        Specification specification = specificationBuilder.buildSpecification(result);
         List all = repository.findAll(specification);
         System.out.println(all);
     }

@@ -12,7 +12,8 @@ import java.util.List;
 public class DynamicField {
     private String type;
     private String fieldName;
-    private List<String> values;
+    private String value;
+    private List<DynamicField> relatedFields;
 
     public DynamicField(String type, String fieldName) {
         this.type = type;

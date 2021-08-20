@@ -28,12 +28,35 @@ public class SearchableFieldAnnotationProcessor<T> {
                 Object value = getFieldValue(t, field.getName(), fieldType);
                 // Obtain search operation
                 SearchOperation searchOperation = annotation.operation();
-                if (value != null) {
+                // Not adding relation fields
+                if ((value != null) && (annotation.isRelation() == false)) {
                     resultList.add(new SearchCriteria(fieldName, searchOperation, value.toString()));
+                }
+                if ((annotation.relatedFields().length != 0)) {
+                    resultList.add(new SearchCriteria(fieldName, searchOperation, getChildrenElements(t, field)));
                 }
             }
         }
         return resultList;
+    }
+
+    private SearchCriteria[] getChildrenElements(T t, Field fatherField) {
+        List<SearchCriteria> result = new ArrayList<>();
+        SearchableFieldAnnotation annotation = fatherField.getAnnotation(SearchableFieldAnnotation.class);
+        String[] childrenNames = annotation.relatedFields();
+        for (String child : childrenNames) {
+            try {
+                Field childField = t.getClass().getDeclaredField(child);
+                Class<?> fieldType = childField.getType();
+                String fieldName = childField.getName();
+                Object value = getFieldValue(t, childField.getName(), fieldType);
+                SearchOperation searchOperation = childField.getAnnotation(SearchableFieldAnnotation.class).operation();
+                result.add(new SearchCriteria(fieldName, searchOperation, value.toString()));
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+        }
+        return result.toArray(new SearchCriteria[result.size()]);
     }
 
     private <T> T getFieldValue(Object object, String fieldName, Class<T> fieldType) {

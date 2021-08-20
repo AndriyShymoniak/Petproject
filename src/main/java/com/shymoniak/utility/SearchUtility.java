@@ -2,7 +2,7 @@ package com.shymoniak.utility;
 
 import com.shymoniak.annotation.SearchableFieldAnnotation;
 import com.shymoniak.exception.ApiRequestException;
-import com.shymoniak.utility.search.SpecificationFormer;
+import com.shymoniak.utility.search.SpecificationBuilder;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import com.shymoniak.utility.search.entity.DynamicField;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ import java.util.List;
 @Component
 public class SearchUtility<T> {
 
-    private SpecificationFormer<T> specificationFormer;
+    private SpecificationBuilder<T> specificationBuilder;
     private ObjectMapperUtils objectMapperUtils;
 
     @Autowired
-    public SearchUtility(SpecificationFormer<T> specificationFormer, ObjectMapperUtils objectMapperUtils) {
-        this.specificationFormer = specificationFormer;
+    public SearchUtility(SpecificationBuilder<T> specificationBuilder, ObjectMapperUtils objectMapperUtils) {
+        this.specificationBuilder = specificationBuilder;
         this.objectMapperUtils = objectMapperUtils;
     }
 
-    public Specification getDynamicSpecification(DynamicClass dynamicClass, T t){
+    public Specification getDynamicSpecification(DynamicClass dynamicClass, T t) {
         t = convertToOriginalClass(dynamicClass, t);
-        return specificationFormer.formSpecification(t);
+        return specificationBuilder.buildSpecification(t);
     }
 
     public DynamicClass generateDynamicClass(T t) {
@@ -37,16 +37,16 @@ public class SearchUtility<T> {
         return new DynamicClass(fullClassPath, dynamicFields);
     }
 
+    // TODO: 2021-08-20 refactor
     public T convertToOriginalClass(DynamicClass dynamicClass, T t) {
         try {
             List<DynamicField> dynamicFields = dynamicClass.getSourceClassFields();
             for (DynamicField dynamicField : dynamicFields) {
-                Field originalField = t.getClass().getDeclaredField(dynamicField.getFieldName());
-                Class<?> fieldType = originalField.getType();
-                List<String> values = dynamicField.getValues();
-                originalField.setAccessible(true);
-                if (values != null && !values.isEmpty()) {
-                    String value = values.get(0);
+                String value = dynamicField.getValue();
+                if (value != null && !value.isEmpty()) {
+                    Field originalField = t.getClass().getDeclaredField(dynamicField.getFieldName());
+                    Class<?> fieldType = originalField.getType();
+                    originalField.setAccessible(true);
                     Object map = objectMapperUtils.map(value, fieldType);
                     originalField.set(t, map);
                 }
@@ -59,10 +59,6 @@ public class SearchUtility<T> {
             e.printStackTrace();
             throw new ApiRequestException("Illegal access");
         }
-    }
-
-    public static <T> T instanceOf(Class<T> clazz) throws Exception {
-        return clazz.newInstance();
     }
 
     private List<DynamicField> generateDynamicFields(T t) {
@@ -78,11 +74,5 @@ public class SearchUtility<T> {
             }
         }
         return dynamicFields;
-    }
-
-    private <T> T getFieldValue(Object object, String fieldName, Class<T> fieldType) {
-        Field field = ReflectionUtils.findField(object.getClass(), fieldName, fieldType);
-        ReflectionUtils.makeAccessible(field);
-        return (T) ReflectionUtils.getField(field, object);
     }
 }
