@@ -37,7 +37,6 @@ public class SearchUtility<T> {
         return new DynamicClass(fullClassPath, dynamicFields);
     }
 
-    // TODO: 2021-08-20 refactor
     public T convertToOriginalClass(DynamicClass dynamicClass, T t) {
         try {
             List<DynamicField> dynamicFields = dynamicClass.getSourceClassFields();
@@ -52,12 +51,9 @@ public class SearchUtility<T> {
                 }
             }
             return t;
-        } catch (NoSuchFieldException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new ApiRequestException("No such field");
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            throw new ApiRequestException("Illegal access");
+            throw new ApiRequestException("Reflection exception occurred");
         }
     }
 
