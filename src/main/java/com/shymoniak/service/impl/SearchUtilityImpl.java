@@ -1,7 +1,9 @@
-package com.shymoniak.utility;
+package com.shymoniak.service.impl;
 
 import com.shymoniak.annotation.SearchableFieldAnnotation;
 import com.shymoniak.exception.ApiRequestException;
+import com.shymoniak.service.SearchUtility;
+import com.shymoniak.utility.ObjectMapperUtils;
 import com.shymoniak.utility.search.SpecificationBuilder;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import com.shymoniak.utility.search.entity.DynamicField;
@@ -15,28 +17,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SearchUtility<T> {
+public class SearchUtilityImpl<T> implements SearchUtility<T> {
 
     private SpecificationBuilder<T> specificationBuilder;
     private ObjectMapperUtils objectMapperUtils;
 
     @Autowired
-    public SearchUtility(SpecificationBuilder<T> specificationBuilder, ObjectMapperUtils objectMapperUtils) {
+    public SearchUtilityImpl(SpecificationBuilder<T> specificationBuilder, ObjectMapperUtils objectMapperUtils) {
         this.specificationBuilder = specificationBuilder;
         this.objectMapperUtils = objectMapperUtils;
     }
 
+    @Override
     public Specification getDynamicSpecification(DynamicClass dynamicClass, T t) {
         t = convertToOriginalClass(dynamicClass, t);
         return specificationBuilder.buildSpecification(t);
     }
 
+    @Override
     public DynamicClass generateDynamicClass(T t) {
         List<DynamicField> dynamicFields = generateDynamicFields(t);
         String fullClassPath = t.getClass().getCanonicalName();
         return new DynamicClass(fullClassPath, dynamicFields);
     }
 
+    @Override
     public T convertToOriginalClass(DynamicClass dynamicClass, T t) {
         try {
             List<DynamicField> dynamicFields = dynamicClass.getSourceClassFields();

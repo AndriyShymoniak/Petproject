@@ -2,6 +2,7 @@ package com.shymoniak.utility;
 
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.repository.AccommodationRepository;
+import com.shymoniak.service.impl.SearchUtilityImpl;
 import com.shymoniak.utility.search.SpecificationBuilder;
 import com.shymoniak.utility.search.entity.DynamicClass;
 import com.shymoniak.utility.search.entity.DynamicField;
@@ -21,13 +22,13 @@ import java.util.stream.Stream;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @SpringBootTest
-public class SearchUtilityTest {
+public class SearchUtilityImplTest {
 
     @Autowired
     private AccommodationRepository repository;
 
     @Autowired
-    SearchUtility<AccommodationDTO> searchUtility;
+    SearchUtilityImpl<AccommodationDTO> searchUtility;
 
     @Autowired
     SpecificationBuilder<AccommodationDTO> specificationBuilder;
