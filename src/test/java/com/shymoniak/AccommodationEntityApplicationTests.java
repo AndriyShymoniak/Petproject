@@ -56,12 +56,12 @@ class AccommodationEntityApplicationTests {
     }
 
     private void generateRoomList() {
-        RoomEntity roomEntity1 = RoomEntity.builder().square(64).floor(2).build();
-        RoomEntity roomEntity2 = RoomEntity.builder().square(29).floor(8).build();
-        RoomEntity roomEntity3 = RoomEntity.builder().square(11).floor(10).build();
-        RoomEntity roomEntity4 = RoomEntity.builder().square(50).floor(4).build();
-        RoomEntity roomEntity5 = RoomEntity.builder().square(10).floor(5).build();
-        RoomEntity roomEntity6 = RoomEntity.builder().square(30).floor(4).build();
+        RoomEntity roomEntity1 = RoomEntity.builder().square(64F).floor(2).build();
+        RoomEntity roomEntity2 = RoomEntity.builder().square(29F).floor(8).build();
+        RoomEntity roomEntity3 = RoomEntity.builder().square(11F).floor(10).build();
+        RoomEntity roomEntity4 = RoomEntity.builder().square(50F).floor(4).build();
+        RoomEntity roomEntity5 = RoomEntity.builder().square(10F).floor(5).build();
+        RoomEntity roomEntity6 = RoomEntity.builder().square(30F).floor(4).build();
         roomEntities.addAll(Stream.of(roomEntity1, roomEntity2, roomEntity3, roomEntity4, roomEntity5, roomEntity6)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
@@ -81,15 +81,15 @@ class AccommodationEntityApplicationTests {
     private void generateCityList() {
         CityEntity cityEntity1 = CityEntity.builder()
                 .cityName("Lviv")
-                .centerLocationEntity(locationEntities.get(0))
+                .centerLocation(locationEntities.get(0))
                 .build();
         CityEntity cityEntity2 = CityEntity.builder()
                 .cityName("Kyiv")
-                .centerLocationEntity(locationEntities.get(2))
+                .centerLocation(locationEntities.get(2))
                 .build();
         CityEntity cityEntity3 = CityEntity.builder()
                 .cityName("Odessa")
-                .centerLocationEntity(locationEntities.get(4))
+                .centerLocation(locationEntities.get(4))
                 .build();
 
         cities.addAll(Stream.of(cityEntity1, cityEntity2, cityEntity3)
@@ -98,7 +98,7 @@ class AccommodationEntityApplicationTests {
 
     private void generateAccommodationList() {
         AccommodationEntity accommodationEntity1 = AccommodationEntity.builder()
-                .price(50000L)
+                .price(50000F)
                 .description("Lovely family house...")
                 .buildIn(LocalDate.now())
                 .squareMeterPrice(50.7F)
@@ -106,13 +106,13 @@ class AccommodationEntityApplicationTests {
                 .accommodationClass(AccommodationClass.COMFORT)
                 .accommodationCondition(AccommodationCondition.GOOD)
                 .accommodationType(AccommodationType.HOUSE)
-                .locationEntity(locationEntities.get(3))
-                .roomEntityList(Arrays.asList(roomEntities.get(0), roomEntities.get(1)))
-                .cityEntity(cities.get(0))
+                .location(locationEntities.get(3))
+                .roomList(Arrays.asList(roomEntities.get(0), roomEntities.get(1)))
+                .city(cities.get(0))
                 .build();
 
         AccommodationEntity accommodationEntity2 = AccommodationEntity.builder()
-                .price(60000L)
+                .price(60000F)
                 .description("Decent office for your business...")
                 .buildIn(LocalDate.now())
                 .squareMeterPrice(50.7F)
@@ -120,13 +120,13 @@ class AccommodationEntityApplicationTests {
                 .accommodationClass(AccommodationClass.BUSINESS)
                 .accommodationCondition(AccommodationCondition.SATISFACTORY)
                 .accommodationType(AccommodationType.OFFICE)
-                .locationEntity(locationEntities.get(4))
-                .roomEntityList(Arrays.asList(roomEntities.get(2), roomEntities.get(3)))
-                .cityEntity(cities.get(1))
+                .location(locationEntities.get(4))
+                .roomList(Arrays.asList(roomEntities.get(2), roomEntities.get(3)))
+                .city(cities.get(1))
                 .build();
 
         AccommodationEntity accommodationEntity3 = AccommodationEntity.builder()
-                .price(70000L)
+                .price(70000F)
                 .description("Luxurious apartment...")
                 .buildIn(LocalDate.now())
                 .squareMeterPrice(50.7F)
@@ -134,13 +134,13 @@ class AccommodationEntityApplicationTests {
                 .accommodationClass(AccommodationClass.ELITE)
                 .accommodationCondition(AccommodationCondition.PERFECT)
                 .accommodationType(AccommodationType.APARTMENT)
-                .locationEntity(locationEntities.get(5))
-                .roomEntityList(Arrays.asList(roomEntities.get(4), roomEntities.get(5)))
-                .cityEntity(cities.get(2))
+                .location(locationEntities.get(5))
+                .roomList(Arrays.asList(roomEntities.get(4), roomEntities.get(5)))
+                .city(cities.get(2))
                 .build();
 
         AccommodationEntity accommodationEntity4 = AccommodationEntity.builder()
-                .price(80000L)
+                .price(80000F)
                 .description("Luxurious apartment...")
                 .buildIn(LocalDate.now())
                 .squareMeterPrice(50.7F)
@@ -148,9 +148,9 @@ class AccommodationEntityApplicationTests {
                 .accommodationClass(AccommodationClass.ELITE)
                 .accommodationCondition(AccommodationCondition.PERFECT)
                 .accommodationType(AccommodationType.APARTMENT)
-                .locationEntity(locationEntities.get(5))
-                .roomEntityList(Arrays.asList(roomEntities.get(4), roomEntities.get(5)))
-                .cityEntity(cities.get(2))
+                .location(locationEntities.get(5))
+                .roomList(Arrays.asList(roomEntities.get(4), roomEntities.get(5)))
+                .city(cities.get(2))
                 .build();
         accommodationEntities.addAll(Stream.of(accommodationEntity1, accommodationEntity2, accommodationEntity3, accommodationEntity4)
                 .collect(Collectors.toCollection(ArrayList::new)));

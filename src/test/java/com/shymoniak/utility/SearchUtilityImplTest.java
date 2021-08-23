@@ -37,7 +37,7 @@ public class SearchUtilityImplTest {
     public void testSearch() {
         AccommodationDTO accommodationDTO = AccommodationDTO.builder()
                 .currency("USD")
-                .price(50000L)
+                .price(50000F)
                 .build();
 
         Specification specification = specificationBuilder.buildSpecification(accommodationDTO);

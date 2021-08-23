@@ -21,5 +21,5 @@ public class LocationDTO {
     private String latitude;
 
     @JsonManagedReference
-    private List<AccommodationDTO> accommodationEntityList = new ArrayList<>();
+    private List<AccommodationDTO> accommodationList = new ArrayList<>();
 }

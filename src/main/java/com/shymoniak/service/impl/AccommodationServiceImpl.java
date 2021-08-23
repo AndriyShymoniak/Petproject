@@ -5,6 +5,7 @@ import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.entity.AccommodationEntity;
 import com.shymoniak.exception.ApiRequestException;
 import com.shymoniak.repository.AccommodationRepository;
+import com.shymoniak.service.AccommodationFiller;
 import com.shymoniak.service.AccommodationService;
 import com.shymoniak.service.SearchUtility;
 import com.shymoniak.utility.ObjectMapperUtils;
@@ -21,18 +22,22 @@ public class AccommodationServiceImpl implements AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final ObjectMapperUtils mapper;
     private final SearchUtility<AccommodationDTO> searchUtility;
+    private final AccommodationFiller accommodationFiller;
 
     @Autowired
     public AccommodationServiceImpl(AccommodationRepository accommodationRepository,
                                     ObjectMapperUtils mapper,
-                                    SearchUtility<AccommodationDTO> searchUtility) {
+                                    SearchUtility<AccommodationDTO> searchUtility,
+                                    AccommodationFiller accommodationFiller) {
         this.accommodationRepository = accommodationRepository;
         this.mapper = mapper;
         this.searchUtility = searchUtility;
+        this.accommodationFiller = accommodationFiller;
     }
 
     @Override
     public AccommodationDTO addAccommodation(AccommodationDTO accommodation) {
+        accommodation = accommodationFiller.fillMissingFields(accommodation);
         accommodationRepository.save(mapper.map(accommodation, AccommodationEntity.class));
         return accommodation;
     }

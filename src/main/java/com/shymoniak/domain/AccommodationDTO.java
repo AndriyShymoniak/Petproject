@@ -27,11 +27,11 @@ public class AccommodationDTO {
             operation = SearchOperation.BETWEEN,
             relatedFields = {"priceFrom", "priceTo"}
     )
-    private Long price;
+    private Float price;
     @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
-    private Long priceFrom;
+    private Float priceFrom;
     @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
-    private Long priceTo;
+    private Float priceTo;
 
     @SearchableFieldAnnotation(operation = SearchOperation.EQUALS)
     private String currency;
@@ -51,10 +51,10 @@ public class AccommodationDTO {
     private AccommodationClass accommodationClass;
     private AccommodationCondition accommodationCondition;
     private AccommodationType accommodationType;
-    private CityDTO cityEntity;
+    private CityDTO city;
 
     @JsonBackReference
-    private LocationDTO locationEntity;
-    private List<RoomDTO> roomEntityList = new ArrayList<>();
-    private List<MediaDTO> mediaEntityList = new ArrayList<>();
+    private LocationDTO location;
+    private List<RoomDTO> roomList = new ArrayList<>();
+    private List<MediaDTO> mediaList = new ArrayList<>();
 }

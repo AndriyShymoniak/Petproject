@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RoomDTO {
     private Long roomId;
-    private Integer square;
+    private Float square;
     private Integer floor;
 }

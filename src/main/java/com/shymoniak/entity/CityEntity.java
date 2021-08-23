@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,5 +25,11 @@ public class CityEntity {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "city_center_location")
-    private LocationEntity centerLocationEntity;
+    private LocationEntity centerLocation;
+
+    @OneToMany(mappedBy = "city",
+              fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL,
+              orphanRemoval = true)
+    private List<AccommodationEntity> accommodationList;
 }

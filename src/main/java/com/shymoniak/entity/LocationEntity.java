@@ -27,6 +27,6 @@ public class LocationEntity {
     @Column(name = "latitude")
     private String latitude;
 
-    @OneToMany(mappedBy = "locationEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<AccommodationEntity> accommodationEntityList = new ArrayList<>();
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<AccommodationEntity> accommodationList = new ArrayList<>();
 }

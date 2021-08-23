@@ -20,7 +20,7 @@ public class RoomEntity {
     private Long roomId;
 
     @Column(name = "square")
-    private Integer square;
+    private Float square;
 
     @Column(name = "floor")
     private Integer floor;

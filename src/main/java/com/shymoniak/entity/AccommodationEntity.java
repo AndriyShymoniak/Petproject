@@ -24,7 +24,7 @@ public class AccommodationEntity {
     private Long accommodationId;
 
     @Column(name = "price")
-    private Long price;
+    private Float price;
 
     @Column(name = "currency", length = 3)
     private String currency;
@@ -58,17 +58,17 @@ public class AccommodationEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
-    private LocationEntity locationEntity;
+    private LocationEntity location;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id")
-    private CityEntity cityEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id", updatable = false)
+    private CityEntity city;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "accommodation_id", nullable = false)
+    private List<RoomEntity> roomList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "accommodation_id")
-    private List<RoomEntity> roomEntityList = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "accommodation_id")
-    private List<MediaEntity> mediaEntityList = new ArrayList<>();
+    private List<MediaEntity> mediaList = new ArrayList<>();
 }
