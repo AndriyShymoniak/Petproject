@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/accommodation")
 public class AccommodationController {
-    private AccommodationService accommodationService;
+    private final AccommodationService accommodationService;
 
     @Autowired
     public AccommodationController(AccommodationService accommodationService) {

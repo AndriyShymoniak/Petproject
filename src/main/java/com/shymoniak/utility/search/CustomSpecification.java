@@ -10,7 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 public class CustomSpecification<T> implements Specification<T> {
-    private SearchCriteria criteria;
+    private final SearchCriteria criteria;
 
     public CustomSpecification(SearchCriteria criteria) {
         this.criteria = criteria;

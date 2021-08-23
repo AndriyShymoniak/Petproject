@@ -59,7 +59,7 @@ public class SearchUtilityImplTest {
         List<DynamicField> sourceClassFields = dyn.getSourceClassFields();
         DynamicField dynamicField = sourceClassFields.get(0);
         dynamicField.setValue(values.get(0));
-        DynamicClass dynamicClass = new DynamicClass(accommodationDTO.getClass().getCanonicalName(), dyn.getSourceClassFields());
+        DynamicClass dynamicClass = new DynamicClass(dyn.getSourceClassFields());
         AccommodationDTO result = searchUtility.convertToOriginalClass(dynamicClass, new AccommodationDTO());
         System.out.println(result);
 

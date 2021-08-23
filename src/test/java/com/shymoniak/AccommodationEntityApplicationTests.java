@@ -30,10 +30,10 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class AccommodationEntityApplicationTests {
-    private List<RoomEntity> roomEntities = new ArrayList<>();
-    private List<LocationEntity> locationEntities = new ArrayList<>();
-    private List<CityEntity> cities = new ArrayList<>();
-    private List<AccommodationEntity> accommodationEntities = new ArrayList<>();
+    private final List<RoomEntity> roomEntities = new ArrayList<>();
+    private final List<LocationEntity> locationEntities = new ArrayList<>();
+    private final List<CityEntity> cities = new ArrayList<>();
+    private final List<AccommodationEntity> accommodationEntities = new ArrayList<>();
 
     @Autowired
     private RoomRepository roomRepository;

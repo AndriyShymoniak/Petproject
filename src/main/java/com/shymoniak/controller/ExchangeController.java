@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/exchange")
 public class ExchangeController {
-    private ExchangeService exchangeService;
+    private final ExchangeService exchangeService;
 
     public ExchangeController(ExchangeService exchangeService) {
         this.exchangeService = exchangeService;

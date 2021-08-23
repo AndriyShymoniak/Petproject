@@ -10,7 +10,6 @@ import com.shymoniak.utility.search.entity.DynamicField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ import java.util.List;
 @Component
 public class SearchUtilityImpl<T> implements SearchUtility<T> {
 
-    private SpecificationBuilder<T> specificationBuilder;
-    private ObjectMapperUtils objectMapperUtils;
+    private final SpecificationBuilder<T> specificationBuilder;
+    private final ObjectMapperUtils objectMapperUtils;
 
     @Autowired
     public SearchUtilityImpl(SpecificationBuilder<T> specificationBuilder, ObjectMapperUtils objectMapperUtils) {
@@ -29,7 +28,7 @@ public class SearchUtilityImpl<T> implements SearchUtility<T> {
     }
 
     @Override
-    public Specification getDynamicSpecification(DynamicClass dynamicClass, T t) {
+    public Specification<T> getDynamicSpecification(DynamicClass dynamicClass, T t) {
         t = convertToOriginalClass(dynamicClass, t);
         return specificationBuilder.buildSpecification(t);
     }
@@ -37,8 +36,7 @@ public class SearchUtilityImpl<T> implements SearchUtility<T> {
     @Override
     public DynamicClass generateDynamicClass(T t) {
         List<DynamicField> dynamicFields = generateDynamicFields(t);
-        String fullClassPath = t.getClass().getCanonicalName();
-        return new DynamicClass(fullClassPath, dynamicFields);
+        return new DynamicClass(dynamicFields);
     }
 
     @Override

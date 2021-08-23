@@ -15,8 +15,8 @@ import java.util.Optional;
 
 @Service
 public class LocationServiceImpl implements LocationService {
-    private LocationRepository locationRepository;
-    private ObjectMapperUtils mapper;
+    private final LocationRepository locationRepository;
+    private final ObjectMapperUtils mapper;
 
     @Autowired
     public LocationServiceImpl(LocationRepository locationRepository, ObjectMapperUtils mapper) {

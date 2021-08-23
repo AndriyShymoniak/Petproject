@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/city")
 public class CityController {
-    private CityService cityService;
+    private final CityService cityService;
 
     @Autowired
     public CityController(CityService cityService) {
@@ -25,7 +25,7 @@ public class CityController {
     }
 
     @GetMapping("/id")
-    public ResponseEntity<CityDTO> showCitiyById(@RequestParam Long id) {
+    public ResponseEntity<CityDTO> showCityById(@RequestParam Long id) {
         return new ResponseEntity<>(cityService.findCityById(id), HttpStatus.OK);
     }
 

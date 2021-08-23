@@ -15,8 +15,8 @@ import java.util.Optional;
 
 @Service
 public class RoomServiceImpl implements RoomService {
-    private RoomRepository roomRepository;
-    private ObjectMapperUtils mapper;
+    private final RoomRepository roomRepository;
+    private final ObjectMapperUtils mapper;
 
     @Autowired
     public RoomServiceImpl(RoomRepository roomRepository, ObjectMapperUtils mapper) {

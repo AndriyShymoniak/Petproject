@@ -10,6 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DynamicClass {
-    String sourceClassName;
     List<DynamicField> sourceClassFields;
 }

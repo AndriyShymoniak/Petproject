@@ -1,6 +1,5 @@
 package com.shymoniak.domain;
 
-import com.shymoniak.entity.LocationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

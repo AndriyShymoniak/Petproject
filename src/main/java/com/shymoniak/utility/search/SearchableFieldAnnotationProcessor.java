@@ -29,7 +29,7 @@ public class SearchableFieldAnnotationProcessor<T> {
                 // Obtain search operation
                 SearchOperation searchOperation = annotation.operation();
                 // Not adding relation fields
-                if ((value != null) && (annotation.isRelation() == false)) {
+                if ((value != null) && (!annotation.isRelation())) {
                     resultList.add(new SearchCriteria(fieldName, searchOperation, value.toString()));
                 }
                 if ((annotation.relatedFields().length != 0)) {

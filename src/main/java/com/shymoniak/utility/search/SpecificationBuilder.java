@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class SpecificationBuilder<T> {
 
-    private SearchableFieldAnnotationProcessor<T> annotationProcessor;
+    private final SearchableFieldAnnotationProcessor<T> annotationProcessor;
 
     @Autowired
     public SpecificationBuilder(SearchableFieldAnnotationProcessor<T> annotationProcessor) {

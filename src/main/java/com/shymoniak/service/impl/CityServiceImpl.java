@@ -15,8 +15,8 @@ import java.util.Optional;
 
 @Service
 public class CityServiceImpl implements CityService {
-    private CityRepository cityRepository;
-    private ObjectMapperUtils mapper;
+    private final CityRepository cityRepository;
+    private final ObjectMapperUtils mapper;
 
     @Autowired
     public CityServiceImpl(CityRepository cityRepository, ObjectMapperUtils mapper) {

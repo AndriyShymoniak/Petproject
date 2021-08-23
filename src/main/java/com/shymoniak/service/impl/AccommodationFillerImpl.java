@@ -22,8 +22,6 @@ public class AccommodationFillerImpl implements AccommodationFiller {
             Float sqmPrice = accommodation.getPrice() / accommodation.getTotalArea();
             accommodation.setSquareMeterPrice(sqmPrice);
         }
-
-
         return accommodation;
     }
 
