@@ -1,6 +1,6 @@
-package com.shymoniak.service;
+package com.shymoniak.model;
 
-import com.shymoniak.utility.search.entity.DynamicClass;
+import com.shymoniak.search.entity.DynamicClass;
 import org.springframework.data.jpa.domain.Specification;
 
 public interface SearchUtility<T> {

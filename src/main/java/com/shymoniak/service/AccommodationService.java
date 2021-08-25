@@ -1,7 +1,7 @@
 package com.shymoniak.service;
 
 import com.shymoniak.domain.AccommodationDTO;
-import com.shymoniak.utility.search.entity.DynamicClass;
+import com.shymoniak.search.entity.DynamicClass;
 
 import java.util.List;
 

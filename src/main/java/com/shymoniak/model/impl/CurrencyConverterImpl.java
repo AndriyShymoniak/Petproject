@@ -1,4 +1,4 @@
-package com.shymoniak.service.impl;
+package com.shymoniak.model.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -7,7 +7,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.internal.LinkedTreeMap;
 import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.exception.ApiRequestException;
-import com.shymoniak.service.CurrencyConverter;
+import com.shymoniak.model.CurrencyConverter;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

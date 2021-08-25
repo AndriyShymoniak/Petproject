@@ -7,4 +7,9 @@ public class ApplicationConstants {
 
     // Exception messages
     public static final String ERROR_MESSAGE_RECORD_NOT_FOUND = "There is no such record";
+
+    // Linear regression files
+    public static final String TRAINING_DATA_SET_FILENAME="linear-train.arff";
+    public static final String TESTING_DATA_SET_FILENAME="linear-test.arff";
+    public static final String PREDICTION_DATA_SET_FILENAME="test-confused.arff";
 }

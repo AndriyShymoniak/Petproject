@@ -2,10 +2,10 @@ package com.shymoniak.utility;
 
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.repository.AccommodationRepository;
-import com.shymoniak.service.impl.SearchUtilityImpl;
-import com.shymoniak.utility.search.SpecificationBuilder;
-import com.shymoniak.utility.search.entity.DynamicClass;
-import com.shymoniak.utility.search.entity.DynamicField;
+import com.shymoniak.model.impl.SearchUtilityImpl;
+import com.shymoniak.search.SpecificationBuilder;
+import com.shymoniak.search.entity.DynamicClass;
+import com.shymoniak.search.entity.DynamicField;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

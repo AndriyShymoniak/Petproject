@@ -1,6 +1,6 @@
-package com.shymoniak.utility.search;
+package com.shymoniak.search;
 
-import com.shymoniak.utility.search.entity.SearchCriteria;
+import com.shymoniak.search.entity.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

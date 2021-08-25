@@ -2,7 +2,7 @@ package com.shymoniak.controller;
 
 import com.shymoniak.domain.AccommodationDTO;
 import com.shymoniak.service.AccommodationService;
-import com.shymoniak.utility.search.entity.DynamicClass;
+import com.shymoniak.search.entity.DynamicClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,12 +1,12 @@
-package com.shymoniak.service.impl;
+package com.shymoniak.model.impl;
 
 import com.shymoniak.annotation.SearchableFieldAnnotation;
 import com.shymoniak.exception.ApiRequestException;
-import com.shymoniak.service.SearchUtility;
+import com.shymoniak.model.SearchUtility;
 import com.shymoniak.utility.ObjectMapperUtils;
-import com.shymoniak.utility.search.SpecificationBuilder;
-import com.shymoniak.utility.search.entity.DynamicClass;
-import com.shymoniak.utility.search.entity.DynamicField;
+import com.shymoniak.search.SpecificationBuilder;
+import com.shymoniak.search.entity.DynamicClass;
+import com.shymoniak.search.entity.DynamicField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

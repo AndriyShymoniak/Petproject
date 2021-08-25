@@ -1,7 +1,7 @@
-package com.shymoniak.service.impl;
+package com.shymoniak.model.impl;
 
 import com.shymoniak.domain.AccommodationDTO;
-import com.shymoniak.service.AccommodationFiller;
+import com.shymoniak.model.AccommodationFiller;
 import org.springframework.stereotype.Component;
 
 @Component
