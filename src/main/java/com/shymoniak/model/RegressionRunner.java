@@ -1,5 +1,8 @@
 package com.shymoniak.model;
 
+/**
+ * Performs regression on database data
+ */
 public interface RegressionRunner {
-    public void run();
+    void run();
 }

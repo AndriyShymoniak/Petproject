@@ -9,6 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+// TODO: 2021-08-27 Create case for IN, add support to Enums 
+
+/**
+ * Generates predicate based on DTO search parameters
+ * @param <T> DTO class
+ */
 public class CustomSpecification<T> implements Specification<T> {
     private final SearchCriteria criteria;
 
@@ -45,9 +51,9 @@ public class CustomSpecification<T> implements Specification<T> {
             Predicate pred1 = createRelatedPredicate(criteria, child1, root, builder);
             Predicate pred2 = createRelatedPredicate(criteria, child2, root, builder);
             return builder.and(pred1, pred2);
-        } else if (!hasValueChild1 && hasValueChild2){
+        } else if (!hasValueChild1 && hasValueChild2) {
             return createRelatedPredicate(criteria, child2, root, builder);
-        } else if (!hasValueChild2 && hasValueChild1){
+        } else if (!hasValueChild2 && hasValueChild1) {
             return createRelatedPredicate(criteria, child1, root, builder);
         }
         return null;

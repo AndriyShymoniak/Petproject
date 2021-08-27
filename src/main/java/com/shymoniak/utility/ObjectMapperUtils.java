@@ -9,6 +9,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Is used to map objects from one class to another
+ */
 @Component
 public class ObjectMapperUtils {
 

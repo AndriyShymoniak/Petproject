@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Creates Specification for searched object
+ * @param <T> DTO class
+ */
 @Component
 public class SpecificationBuilder<T> {
 

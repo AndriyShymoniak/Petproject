@@ -10,6 +10,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Reads DTO object and generates SearchCriteria based on configurations
+ * @param <T> DTO class
+ */
 @Component
 public class SearchableFieldAnnotationProcessor<T> {
 
