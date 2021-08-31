@@ -64,7 +64,7 @@ public class AccommodationEntity {
     @JoinColumn(name = "city_id", updatable = false)
     private CityEntity city;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "accommodation_id", nullable = false)
     private List<RoomEntity> roomList = new ArrayList<>();
 

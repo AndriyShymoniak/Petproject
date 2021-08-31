@@ -1,68 +1,64 @@
 package com.shymoniak.model.impl;
 
-import com.shymoniak.constant.ApplicationConstants;
-import com.shymoniak.exception.ApiRequestException;
+import com.shymoniak.entity.AccommodationEntity;
 import com.shymoniak.model.RegressionRunner;
 
+import com.shymoniak.repository.AccommodationRepository;
+import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import weka.classifiers.Classifier;
-import weka.classifiers.Evaluation;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.converters.ArffLoader;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class RegressionRunnerImpl implements RegressionRunner {
+    @Autowired
+    AccommodationRepository accommodationRepository;
+
     /**
      * This method is used to process the input and return the statistics.
      */
     @Override
     public void run() {
-        Instances trainingDataSet = getDataSet(ApplicationConstants.TRAINING_DATA_SET_FILENAME);
-        Instances testingDataSet = getDataSet(ApplicationConstants.TESTING_DATA_SET_FILENAME);
-        try {
-            Classifier classifier = new weka.classifiers.functions.LinearRegression();
-            classifier.buildClassifier(trainingDataSet);
+        OLSMultipleLinearRegression regression = new OLSMultipleLinearRegression();
+        regression.setNoIntercept(true);
+        List<AccommodationEntity> accommodations = accommodationRepository.findAll();
+        List<Double> resultValues = new ArrayList<>();
+        List<List<Double>> predictionValues = new ArrayList<>();
 
-            // Trains the algorithm on training data and evaluates on testing data
-            Evaluation eval = new Evaluation(trainingDataSet);
-            eval.evaluateModel(classifier, testingDataSet);
-            // Print the algorithm summary
-            System.out.println("** Linear Regression Evaluation with Datasets **");
-            System.out.println(eval.toSummaryString());
-            System.out.print(" the expression for the input data as per alogorithm is ");
-            System.out.println(classifier);
-
-            Instance predicationDataSet = getDataSet(ApplicationConstants.PREDICTION_DATA_SET_FILENAME).lastInstance();
-            double value = classifier.classifyInstance(predicationDataSet);
-            /** Prediction Output */
-            System.out.println(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ApiRequestException("Regression algorithm failed to process");
+        for (AccommodationEntity accommodation : accommodations) {
+            List<Double> innerList = new ArrayList<>();
+            innerList.add((double) accommodation.getBuildIn().toEpochDay());
+            innerList.add(Double.valueOf(accommodation.getTotalArea()));
+            innerList.add(Double.valueOf(accommodation.getDistanceToCityCenter()));
+            innerList.add(Double.valueOf(accommodation.getAccommodationClass().getId()));
+            innerList.add(Double.valueOf(accommodation.getAccommodationCondition().getId()));
+            innerList.add(Double.valueOf(accommodation.getAccommodationType().getId()));
+            innerList.add((double) accommodation.getRoomList().size());
+            predictionValues.add(innerList);
+            resultValues.add(Double.valueOf(accommodation.getPrice()));
         }
+        regression.newSampleData(listToArray(resultValues), listTo2DArray(predictionValues));
+        double[] regressionParameters = regression.estimateRegressionParameters();
+        System.out.println(regressionParameters);
     }
 
-    /**
-     * This method loads the data set.
-     *
-     * @param fileName
-     * @return
-     */
-    public static Instances getDataSet(String fileName) {
-        // Class index is used to specify class
-        int classIndex = 1;
-        ArffLoader loader = new ArffLoader();
-        try {
-            loader.setSource(RegressionRunnerImpl.class.getResourceAsStream("/" + fileName));
-            Instances dataSet = loader.getDataSet();
-            dataSet.setClassIndex(classIndex);
-            return dataSet;
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new ApiRequestException("Failed to load regression data, .arff file problems");
+    private double[] listToArray(List<Double> list) {
+        double[] arr = new double[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
         }
+        return arr;
+    }
+
+    private double[][] listTo2DArray(List<List<Double>> list) {
+        double[][] arr = new double[list.size()][list.get(0).size()];
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(0).size(); j++) {
+             arr[i][j] = list.get(i).get(j);
+            }
+        }
+        return arr;
     }
 }

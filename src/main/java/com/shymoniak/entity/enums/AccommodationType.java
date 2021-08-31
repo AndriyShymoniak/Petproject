@@ -1,8 +1,14 @@
 package com.shymoniak.entity.enums;
 
-public enum AccommodationType {
-    HOUSE("House"), OFFICE("Office"), APARTMENT("Apartment");
+import lombok.Getter;
 
-    AccommodationType(String typeName) {
+@Getter
+public enum AccommodationType {
+    HOUSE("House", 1), OFFICE("Office", 2), APARTMENT("Apartment", 3);
+
+    private final Integer id;
+
+    AccommodationType(String typeName, Integer id) {
+        this.id = id;
     }
 }

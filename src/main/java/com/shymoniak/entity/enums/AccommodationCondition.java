@@ -1,9 +1,15 @@
 package com.shymoniak.entity.enums;
 
-public enum AccommodationCondition {
-    UNSATISFACTORY("Unsatisfactory"), SATISFACTORY("Satisfactory"),
-    GOOD("Good"), PERFECT("Perfect");
+import lombok.Getter;
 
-    AccommodationCondition(String conditionName) {
+@Getter
+public enum AccommodationCondition {
+    UNSATISFACTORY("Unsatisfactory", 1), SATISFACTORY("Satisfactory", 2),
+    GOOD("Good", 3), PERFECT("Perfect", 4);
+
+    private final Integer id;
+
+    AccommodationCondition(String conditionName, Integer id) {
+        this.id = id;
     }
 }

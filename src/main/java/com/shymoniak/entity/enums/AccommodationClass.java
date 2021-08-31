@@ -1,9 +1,15 @@
 package com.shymoniak.entity.enums;
 
-public enum AccommodationClass {
-    ECONOMIC("Economic"), COMFORT ("Comfort"),
-    BUSINESS("Business"), ELITE("Elite");
+import lombok.Getter;
 
-    AccommodationClass(String className) {
+@Getter
+public enum AccommodationClass {
+    ECONOMIC("Economic", 1), COMFORT("Comfort", 2),
+    BUSINESS("Business", 3), ELITE("Elite", 4);
+
+    private final Integer id;
+
+    AccommodationClass(String className, Integer id) {
+        this.id = id;
     }
 }

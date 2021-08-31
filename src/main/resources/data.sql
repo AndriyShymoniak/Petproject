@@ -16,26 +16,56 @@ VALUES (1,  49.833539, 23.981344),
        (1002, 39.9075000, 116.3972300),
        (1003, 46.4774700, 30.7326200);
 
+INSERT INTO accommodation(accommodation_id, accommodation_class, accommodation_condition, accommodation_type, built_in,
+                          description, distance_to_city_center, price, currency, total_area, square_meter_price,
+                          city_id, location_id)
+VALUES (1,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               4.7, 15000,  'USD', 40,    375, 1, 1),
+       (2,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               5.3, 16000,  'USD', 44.5,  360, 1, 2),
+       (3,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               3.3, 15500,  'USD', 47.9,  397, 1, 3),
+       (4,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               3.3, 16500,  'USD', 47.9,  397, 1, 3),
+       (5,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               3.3, 17000,  'USD', 47.9,  397, 1, 3),
+       (6,  'ECONOMIC', 'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',               5.3, 14500,  'USD', 47.9,  397, 1, 3),
+       (7,  'ECONOMIC', 'UNSATISFACTORY', 'HOUSE',     CURRENT_TIMESTAMP, 'Affordable house',                   7.3, 19500,  'USD', 47.9,  397, 1, 3),
+       (8,  'ECONOMIC', 'UNSATISFACTORY', 'HOUSE',     CURRENT_TIMESTAMP, 'Affordable house',                   5.3, 19000,  'USD', 47.9,  397, 1, 3),
+       (9,  'ECONOMIC', 'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Affordable house',                   6.1, 18000,  'USD', 47.9,  397, 1, 3),
+       (10, 'ECONOMIC', 'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Affordable house',                   5.9, 19000,  'USD', 47.9,  397, 1, 3),
+
+       (11, 'COMFORT',  'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',              4.9, 24000,  'USD', 58.5,  410, 1, 4),
+       (12, 'COMFORT',  'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',              6.1, 26000,  'USD', 112.5, 400, 1, 5),
+       (13, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',              6.1, 28000,  'USD', 112.5, 400, 1, 5),
+       (14, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',              6.1, 32000,  'USD', 112.5, 400, 1, 5),
+       (15, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',              6.1, 34000,  'USD', 112.5, 400, 1, 5),
+       (16, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',             6.1, 30000,  'USD', 112.5, 400, 1, 5),
+       (17, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',             6.1, 31000,  'USD', 112.5, 400, 1, 5),
+       (18, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',             6.1, 31500,  'USD', 112.5, 400, 1, 5),
+       (19, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',             6.1, 45000,  'USD', 112.5, 400, 1, 5),
+       (20, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',             6.1, 48000,  'USD', 112.5, 400, 1, 5),
+
+       (21, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 3.4, 110000, 'USD', 275,   400, 1, 7),
+       (22, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 4.2, 120000, 'USD', 279,   430, 1, 8),
+       (23, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (24, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (25, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (26, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (27, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (28, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (29, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+       (30, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, 'Decent office for your business...', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
+
+       (31, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP, 'Lovely apartment...',                5.9, 180000, 'USD', 300,   600, 1, 10),
+       (32, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP, 'Luxurious apartment...',             7.4, 300000, 'USD', 400,   750, 1, 11),
+       (33, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP, 'Luxurious apartment...',             7.4, 300000, 'USD', 400,   750, 1, 11),
+       (34, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 7.4, 300000, 'USD', 400,   750, 1, 11),
+       (35, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 7.4, 300000, 'USD', 400,   750, 1, 11),
+       (36, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 7.4, 300000, 'USD', 400,   750, 1, 11),
+       (37, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 7.4, 300000, 'USD', 400,   750, 1, 11),
+       (38, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 7.4, 300000, 'USD', 400,   750, 1, 11),
+       (39, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                 0.4, 160000, 'USD', 250,   640, 1, 12);
+
 INSERT INTO city (city_id, city_name, city_center_location)
 VALUES (1, 'Lviv',   1001),
        (2, 'Kyiv',   1002),
        (3, 'Odessa', 1003);
-
-INSERT INTO accommodation(accommodation_id, accommodation_class, accommodation_condition, accommodation_type, built_in,
-                          description, distance_to_city_center, price, currency, total_area, square_meter_price,
-                          city_id, location_id)
-VALUES (1, 'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',                 4.7, 15000,  'USD', 40,    375, 1, 1),
-       (2, 'ECONOMIC', 'UNSATISFACTORY', 'HOUSE',     CURRENT_TIMESTAMP, 'Affordable apartment',                 5.3, 16000,  'USD', 44.5,  360, 1, 2),
-       (3, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Affordable apartment',                 3.3, 19000,  'USD', 47.9,  397, 1, 3),
-       (4, 'COMFORT',  'SATISFACTORY',   'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',                4.9, 24000,  'USD', 58.5,  410, 1, 4),
-       (5, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',               6.1, 45000,  'USD', 112.5, 400, 1, 5),
-       (6, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP, 'Comfortable apartment',                2.1, 40000,  'USD', 88.9,  450, 1, 6),
-       (7, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 3.4, 110000, 'USD', 275,   400, 1, 7),
-       (8, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 4.2, 120000, 'USD', 279,   430, 1, 8),
-       (9, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP, '"Decent office for your business..."', 1.2, 150000, 'USD', 333.3, 450, 1, 9),
-       (10, 'ELITE',   'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Lovely family house...',               5.9, 180000, 'USD', 300,   600, 1, 10),
-       (11, 'ELITE',   'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP, 'Luxurious house...',                   7.4, 300000, 'USD', 400,   750, 1, 11),
-       (12, 'ELITE',   'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP, 'Luxurious apartment...',               0.4, 160000, 'USD', 250,   640, 1, 12);
 
 INSERT INTO room (room_id, square, floor, accommodation_id)
 VALUES (1,  20, 5, 1),   (2,  15, 5, 1),
