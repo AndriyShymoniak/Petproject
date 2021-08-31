@@ -35,12 +35,6 @@ public class AccommodationEntity {
     @Column(name = "built_in")
     private LocalDate buildIn;
 
-    @Column(name = "total_area")
-    private Float totalArea;
-
-    @Column(name = "square_meter_price")
-    private Float squareMeterPrice;
-
     @Column(name = "distance_to_city_center")
     private Float distanceToCityCenter;
 

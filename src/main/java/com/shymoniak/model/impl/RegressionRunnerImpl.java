@@ -30,7 +30,6 @@ public class RegressionRunnerImpl implements RegressionRunner {
         for (AccommodationEntity accommodation : accommodations) {
             List<Double> innerList = new ArrayList<>();
             innerList.add((double) accommodation.getBuildIn().toEpochDay());
-            innerList.add(Double.valueOf(accommodation.getTotalArea()));
             innerList.add(Double.valueOf(accommodation.getDistanceToCityCenter()));
             innerList.add(Double.valueOf(accommodation.getAccommodationClass().getId()));
             innerList.add(Double.valueOf(accommodation.getAccommodationCondition().getId()));

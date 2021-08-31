@@ -22,6 +22,10 @@ public class AccommodationFillerImpl implements AccommodationFiller {
             Float sqmPrice = accommodation.getPrice() / accommodation.getTotalArea();
             accommodation.setSquareMeterPrice(sqmPrice);
         }
+//        if (accommodation.getTotalArea() == null){
+//            accommodation.getRoomList().stream().ge
+//            accommodation.setTotalArea();
+//        }
         return accommodation;
     }
 
