@@ -1,11 +1,17 @@
 package com.shymoniak.model.impl;
 
 import com.shymoniak.domain.AccommodationDTO;
+import com.shymoniak.domain.LocationDTO;
 import com.shymoniak.model.AccommodationFiller;
+import com.shymoniak.model.DistanceCalculator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccommodationFillerImpl implements AccommodationFiller {
+    @Autowired
+    private DistanceCalculator distanceCalculator;
+
     @Override
     public AccommodationDTO fillMissingFields(AccommodationDTO accommodation) {
         if (accommodation.getTotalArea() == null) {
@@ -22,10 +28,12 @@ public class AccommodationFillerImpl implements AccommodationFiller {
             Float sqmPrice = accommodation.getPrice() / accommodation.getTotalArea();
             accommodation.setSquareMeterPrice(sqmPrice);
         }
-//        if (accommodation.getTotalArea() == null){
-//            accommodation.getRoomList().stream().ge
-//            accommodation.setTotalArea();
-//        }
+        if (accommodation.getDistanceToCityCenter() == null) {
+            LocationDTO accommodationLocation = accommodation.getLocation();
+            LocationDTO cityCenterLocation = accommodation.getCity().getCenterLocation();
+            Double distance = distanceCalculator.calculateDistance(accommodationLocation, cityCenterLocation);
+            accommodation.setDistanceToCityCenter(distance.floatValue());
+        }
         return accommodation;
     }
 

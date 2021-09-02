@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 
     @Override
     public List<AccommodationDTO> findAllAccommodations() {
-        return mapper.mapAll(accommodationRepository.findAll(), AccommodationDTO.class);
+        List<AccommodationEntity> entityList = accommodationRepository.findAll();
+        List<AccommodationDTO> dtoList = new ArrayList<>();
+        for (AccommodationEntity accommodation : entityList) {
+            dtoList.add(accommodationFiller.fillMissingFields(mapper.map(accommodation, AccommodationDTO.class)));
+        }
+        return dtoList;
     }
 
     @Override

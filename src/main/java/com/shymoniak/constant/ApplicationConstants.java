@@ -12,4 +12,7 @@ public class ApplicationConstants {
     public static final String TRAINING_DATA_SET_FILENAME="linear-train.arff";
     public static final String TESTING_DATA_SET_FILENAME="linear-test.arff";
     public static final String PREDICTION_DATA_SET_FILENAME="test-confused.arff";
+
+    // DistanceCalculator
+    public static final Integer EARTH_RADIUS = 6371; //Kilometers
 }
