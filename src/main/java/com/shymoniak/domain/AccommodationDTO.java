@@ -81,7 +81,6 @@ public class AccommodationDTO {
     private AccommodationType accommodationType;
     private CityDTO city;
 
-    @JsonBackReference
     private LocationDTO location;
     private List<RoomDTO> roomList = new ArrayList<>();
     private List<MediaDTO> mediaList = new ArrayList<>();

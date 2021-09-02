@@ -1,13 +1,9 @@
 package com.shymoniak.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
@@ -17,7 +13,4 @@ public class LocationDTO {
     private Long locationId;
     private String longitude;
     private String latitude;
-
-    @JsonManagedReference
-    private List<AccommodationDTO> accommodationList = new ArrayList<>();
 }
