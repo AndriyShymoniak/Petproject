@@ -43,7 +43,7 @@ public class AccommodationDTO {
     private LocalDate buildIn;
     @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
     private LocalDate buildInFrom;
-    @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
+    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
     private LocalDate buildInTo;
 
     @SearchableFieldAnnotation(
@@ -53,7 +53,7 @@ public class AccommodationDTO {
     private Float totalArea;
     @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
     private LocalDate totalAreaFrom;
-    @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
+    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
     private LocalDate totalAreaTo;
 
     @SearchableFieldAnnotation(
@@ -63,7 +63,7 @@ public class AccommodationDTO {
     private Float squareMeterPrice;
     @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
     private LocalDate squareMeterPriceFrom;
-    @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
+    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
     private LocalDate squareMeterPriceTo;
 
     @SearchableFieldAnnotation(
@@ -73,7 +73,7 @@ public class AccommodationDTO {
     private Float distanceToCityCenter;
     @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
     private LocalDate distanceToCityCenterFrom;
-    @SearchableFieldAnnotation(operation = SearchOperation.GREATER_THAN, isRelation = true)
+    @SearchableFieldAnnotation(operation = SearchOperation.LESS_THAN, isRelation = true)
     private LocalDate distanceToCityCenterTo;
 
     private AccommodationClass accommodationClass;

@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 public class DistanceCalculatorImpl implements DistanceCalculator {
 
     /**
-     * Calculated distance between two locations using Haversine formula:
-     * a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
-     * c = 2 ⋅ atan2( √a, √(1−a) )
-     * d = R ⋅ c
-     *
+     * Calculates distance between two locations
      * @param loc1 - location from
      * @param loc2 - location to
      * @return
@@ -24,7 +20,22 @@ public class DistanceCalculatorImpl implements DistanceCalculator {
         Double lon1 = Double.parseDouble(loc1.getLongitude());
         Double lat2 = Double.parseDouble(loc2.getLatitude());
         Double lon2 = Double.parseDouble(loc2.getLongitude());
+        return calculateUsingHaversineFormula(lat1, lon1, lat2, lon2);
+    }
 
+    /**
+     * Calculates distance between two locations using Haversine formula:
+     * a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+     * c = 2 ⋅ atan2( √a, √(1−a) )
+     * d = R ⋅ c
+     * @param lat1 location from latitude
+     * @param lon1 location from longitude
+     * @param lat2 location to latitude
+     * @param lon2 location to longitude
+     * @return
+     */
+    private Double calculateUsingHaversineFormula(Double lat1, Double lon1,
+                                                  Double lat2, Double lon2) {
         Double phi1 = Math.toRadians(lat1);
         Double phi2 = Math.toRadians(lat2);
         Double deltaPhi = Math.toRadians(lat2 - lat1);

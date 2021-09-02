@@ -10,11 +10,11 @@ import java.lang.annotation.Target;
 /**
  * This annotation is put over DTO's fields, which are meant to be used in
  * dynamic search in database.
- * <b>operation</b> - required parameter which is used to define logical operation of
+ * <br><b>operation</b> - required parameter which is used to define logical operation of
  * field to search. (example: >, <, =, in, between, etc.).
- * <b>related fields</b> - artificially created fields in DTO, which are used in
+ * <br><b>related fields</b> - artificially created fields in DTO, which are used in
  * "between" and "in" operations.
- * <b>isRelation</b> - field is used to mark artificially created relation fields.
+ * <br><b>isRelation</b> - field is used to mark artificially created relation fields.
  */
 @Target(ElementType.FIELD)
 @Retention(value = RetentionPolicy.RUNTIME)

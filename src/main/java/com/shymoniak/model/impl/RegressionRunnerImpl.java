@@ -1,6 +1,7 @@
 package com.shymoniak.model.impl;
 
 import com.shymoniak.entity.AccommodationEntity;
+import com.shymoniak.model.MatrixUtility;
 import com.shymoniak.model.RegressionRunner;
 
 import com.shymoniak.repository.AccommodationRepository;
@@ -13,9 +14,16 @@ import java.util.List;
 
 @Component
 public class RegressionRunnerImpl implements RegressionRunner {
-    @Autowired
-    AccommodationRepository accommodationRepository;
+    private AccommodationRepository accommodationRepository;
+    private MatrixUtility matrixUtility;
 
+    @Autowired
+    public RegressionRunnerImpl(AccommodationRepository accommodationRepository, MatrixUtility matrixUtility) {
+        this.accommodationRepository = accommodationRepository;
+        this.matrixUtility = matrixUtility;
+    }
+
+    // TODO: 2021-09-02 Refactor
     /**
      * This method is used to process the input and return the statistics.
      */
@@ -38,26 +46,8 @@ public class RegressionRunnerImpl implements RegressionRunner {
             predictionValues.add(innerList);
             resultValues.add(Double.valueOf(accommodation.getPrice()));
         }
-        regression.newSampleData(listToArray(resultValues), listTo2DArray(predictionValues));
+        regression.newSampleData(matrixUtility.listToArray(resultValues), matrixUtility.listTo2DArray(predictionValues));
         double[] regressionParameters = regression.estimateRegressionParameters();
         System.out.println(regressionParameters);
-    }
-
-    private double[] listToArray(List<Double> list) {
-        double[] arr = new double[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
-        return arr;
-    }
-
-    private double[][] listTo2DArray(List<List<Double>> list) {
-        double[][] arr = new double[list.size()][list.get(0).size()];
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list.get(0).size(); j++) {
-             arr[i][j] = list.get(i).get(j);
-            }
-        }
-        return arr;
     }
 }

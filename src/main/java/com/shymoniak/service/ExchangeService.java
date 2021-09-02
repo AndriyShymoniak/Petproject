@@ -1,4 +1,4 @@
-package com.shymoniak.model;
+package com.shymoniak.service;
 
 /**
  * Is used to convert values to different currencies

@@ -1,7 +1,7 @@
-package com.shymoniak.model.impl;
+package com.shymoniak.service.impl;
 
 import com.shymoniak.model.CurrencyConverter;
-import com.shymoniak.model.ExchangeService;
+import com.shymoniak.service.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
