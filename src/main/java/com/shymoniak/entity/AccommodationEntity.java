@@ -29,7 +29,7 @@ public class AccommodationEntity {
     @Column(name = "currency", length = 3)
     private String currency;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "built_in")

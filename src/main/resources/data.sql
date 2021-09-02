@@ -32,45 +32,45 @@ VALUES (1, 'Lviv',   1001),
 
 INSERT INTO accommodation(accommodation_id, accommodation_class, accommodation_condition, accommodation_type, built_in,
                           price, currency, city_id, location_id, description)
-VALUES (1,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1973-11-01',  19500,  'USD', 1, 1,  'Продаю 1к квартиру 24 кв. м, Олесницького вулиця в районі Левандівка в Львові');
-       (2,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1950-07-01',  35000,  'USD', 1, 2,  'Гарна простора квартира поблизу Львівської політехніки, житловий стан, парковка авто, надійне капіталовкладення, як під бізнес так і під житло.');
-       (3,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1969-03-01',  34000,  'USD', 1, 3,  'Продається квартира в центрі міста з окремим входом у дворі по вул. Ляймберга С. Потребує ремонту. До квартири ще належить підвал з окремим входом 16кв.м. Закритий двір. Підійде як для житла так і для бізнесу. Офіс, нотаріальна контора, Ломбард і т.д. Деталі за тел.');
-       (4,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1975-08-20',  34000,  'USD', 1, 4,  'Продаж 1 кім квартири по вул. Кордуби 2\2ц. Площа 33\17\10м, гарний житловий стан, з\б перекриття, колонка на воду, МПВікна, санвузол суміщений, пічка, паркет, лічильники, великий гараж на вн. подвірї площею 40м. Ціна 34000 у.о торг при огляді.');
-       (5,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1976-05-01',  32000,  'USD', 1, 5,  'Квартира з ремонтом, МПВ, балкон зашклений з кімнати з МПВ, правильне планування, хрущівка, залізобетонне перекриття, центральне опалення, вмонтовані меблі, зелений гарний двір, поряд садочок, школа, зупинка маршруток, продуктовий ринок, Скай парк, Стрийський парк');
-       (6,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1983-11-01',  22000,  'USD', 1, 6,  'Продається однокімнатна квартира в цегляному будинку по вул. Кільцева м. Винники . Житловий стан , меблі . Без балкону . Поруч магазини , школа .');
-       (7,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1983-11-01',  22000,  'USD', 1, 7,  'Продаж 1-кім квартири в колишньому гуртожитку по вул. Таджицька. Власний вхід в квартиру, житловий стан, в кімнаті виведені комунікації - душ, туалет. Електрика та сантехніка замінена. Є можливість добудови. Гарне, затишне місцерозташування, паркова зона, поруч є все необхідне - магазин, аптека, зупинка, дит садочок, школа. Чудова пропозиція під здачу в довготривалу оренду. Торг! Телефонуйте в будь який зручний для вас час!!!');
-       (8,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1975-10-07',  24000,  'USD', 1, 8,  'Продаж 1-кім квартири по вул Героїв Крут. Площа квартири 35. 2м2 і через стінку 30м2 підвалу поверх цокольний. Індивідуальне опалення. Будинок в гарному стані. Чудове місце розташування та транспортна інфраструктура');
-       (9,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1972-10-07',  26000,  'USD', 1, 9,  'Продаж 1 кімнатної квартири! Вулиця Ряшівська! БЕЗ КОМІСІЇ! 21м.кВ , 9/9 поверх Житловий стан Поруч все для комфортного життя, зручне розташування. Ціна :26000$');
-       (10, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1980-06-12',  26000,  'USD', 1, 10, 'Код объекта: 195471. АН "Атланта" Продається однокімнатна квартира загальною площею 29 кв.м по вулиці Шевченка Рясне 1 на 3-му поверсі у малосімейці, район Сільпо Меблі залишаються поміняні вікна і вхідні двері косметичний ремонт . До 1 листопада проживають квартиранти');
-       (11, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1968-06-12',  40000,  'USD', 1, 11, 'Продається світла, комфортна квартира по вулиці Городоцькій з фасадними вікнами та підвалом. Квартира знаходиться в чудовій локації, 5-10 хв. від центра Львова, навпроти Приміського вокзалу, чудовий варіант як для власного, так і комерційного використання. Біля будинку розвинена інфраструктура: магазини, ТЦ, аптеки, вокзал, ресторани, ... Телефонуйте в зручний для Вас час, відповім на всі запитання та організуємо огляд даного об''єкта.');
-       (12, 'COMFORT',  'GOOD',           'APARTMENT', '1986-06-12',  40000,  'USD', 1, 12, 'ТЕРМІНОВО! Продаж ЕКСКЛЮЗИВНОЇ 1-но кімнатної квартири цегла, ВЕРХНІЙ ШУВАР! Неймовірна пропозиція за доступною ціною! Квартира суха, чиста, зроблений євроремонт, нові металопластикові вікна, новий зашклений балкон, в квартирі 2 комірчини+ підвал, додатково з преспективою на майбутнє є сухий , високий тех поверх, який може стати 2-во рівневою квартирою! ЛІФТ їзде справно і включно до 9-го поверху! Замінена проводка, сантехніка, поставлені всі лічильники, які значно економлять КП! Підїзд ідеальний ОСББ, у цій квартирі дуже економні КП послуги, район розвинутий, усі транспортні розв"язки, інфраструктура на вищому рівні! Усе залишаться окрім дивану! ЗАЇЖАЙ І ЖИВИ!');
-       (13, 'COMFORT',  'GOOD',           'APARTMENT', '1960-06-12',  41000,  'USD', 1, 13, 'ПРОДАЖ 1 к-на кв-ра в. Кривоноса ( Високий Замок), 1/2ц, 3 (XXX) XXX-XX-XX хід з під‘їзду, квартира з ремонтом, МПВ, інд. опалення діюча пічка( газ), та ел. панелі, ел. бойлер, санвузол разом( туалет, ванна, ел. сушка), продається разом з меблями та побутовою технікою, для житла або здачі в оренду, 41000$,');
+VALUES (1,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1973-11-01',  19500,  'USD', 1, 1,  'Продаю 1к квартиру 24 кв. м, Олесницького вулиця в районі Левандівка в Львові'),
+       (2,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1950-07-01',  35000,  'USD', 1, 2,  'Гарна простора квартира поблизу Львівської політехніки, житловий стан, парковка авто, надійне капіталовкладення, як під бізнес так і під житло.'),
+       (3,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1969-03-01',  34000,  'USD', 1, 3,  'Продається квартира в центрі міста з окремим входом у дворі по вул. Ляймберга С. Потребує ремонту. До квартири ще належить підвал з окремим входом 16кв.м. Закритий двір. Підійде як для житла так і для бізнесу. Офіс, нотаріальна контора, Ломбард і т.д. Деталі за тел.'),
+       (4,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1975-08-20',  34000,  'USD', 1, 4,  'Продаж 1 кім квартири по вул. Кордуби 2\2ц. Площа 33\17\10м, гарний житловий стан, з\б перекриття, колонка на воду, МПВікна, санвузол суміщений, пічка, паркет, лічильники, великий гараж на вн. подвірї площею 40м. Ціна 34000 у.о торг при огляді.'),
+       (5,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1976-05-01',  32000,  'USD', 1, 5,  'Квартира з ремонтом, МПВ, балкон зашклений з кімнати з МПВ, правильне планування, хрущівка, залізобетонне перекриття, центральне опалення, вмонтовані меблі, зелений гарний двір, поряд садочок, школа, зупинка маршруток, продуктовий ринок, Скай парк, Стрийський парк'),
+       (6,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1983-11-01',  22000,  'USD', 1, 6,  'Продається однокімнатна квартира в цегляному будинку по вул. Кільцева м. Винники . Житловий стан , меблі . Без балкону . Поруч магазини , школа .'),
+       (7,  'ECONOMIC', 'UNSATISFACTORY', 'APARTMENT', '1983-11-01',  22000,  'USD', 1, 7,  'Продаж 1-кім квартири в колишньому гуртожитку по вул. Таджицька. Власний вхід в квартиру, житловий стан, в кімнаті виведені комунікації - душ, туалет. Електрика та сантехніка замінена. Є можливість добудови. Гарне, затишне місцерозташування, паркова зона, поруч є все необхідне - магазин, аптека, зупинка, дит садочок, школа. Чудова пропозиція під здачу в довготривалу оренду. Торг! Телефонуйте в будь який зручний для вас час!!!'),
+       (8,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1975-10-07',  24000,  'USD', 1, 8,  'Продаж 1-кім квартири по вул Героїв Крут. Площа квартири 35. 2м2 і через стінку 30м2 підвалу поверх цокольний. Індивідуальне опалення. Будинок в гарному стані. Чудове місце розташування та транспортна інфраструктура'),
+       (9,  'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1972-10-07',  26000,  'USD', 1, 9,  'Продаж 1 кімнатної квартири! Вулиця Ряшівська! БЕЗ КОМІСІЇ! 21м.кВ , 9/9 поверх Житловий стан Поруч все для комфортного життя, зручне розташування. Ціна :26000$'),
+       (10, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1980-06-12',  26000,  'USD', 1, 10, 'Код объекта: 195471. АН "Атланта" Продається однокімнатна квартира загальною площею 29 кв.м по вулиці Шевченка Рясне 1 на 3-му поверсі у малосімейці, район Сільпо Меблі залишаються поміняні вікна і вхідні двері косметичний ремонт . До 1 листопада проживають квартиранти'),
+       (11, 'ECONOMIC', 'SATISFACTORY',   'APARTMENT', '1968-06-12',  40000,  'USD', 1, 11, 'Продається світла, комфортна квартира по вулиці Городоцькій з фасадними вікнами та підвалом. Квартира знаходиться в чудовій локації, 5-10 хв. від центра Львова, навпроти Приміського вокзалу, чудовий варіант як для власного, так і комерційного використання. Біля будинку розвинена інфраструктура: магазини, ТЦ, аптеки, вокзал, ресторани, ... Телефонуйте в зручний для Вас час, відповім на всі запитання та організуємо огляд даного об''єкта.'),
+       (12, 'COMFORT',  'GOOD',           'APARTMENT', '1986-06-12',  40000,  'USD', 1, 12, 'ТЕРМІНОВО! Продаж ЕКСКЛЮЗИВНОЇ 1-но кімнатної квартири цегла, ВЕРХНІЙ ШУВАР! Неймовірна пропозиція за доступною ціною! Квартира суха, чиста, зроблений євроремонт, нові металопластикові вікна, новий зашклений балкон, в квартирі 2 комірчини+ підвал, додатково з преспективою на майбутнє є сухий , високий тех поверх, який може стати 2-во рівневою квартирою! ЛІФТ їзде справно і включно до 9-го поверху! Замінена проводка, сантехніка, поставлені всі лічильники, які значно економлять КП! Підїзд ідеальний ОСББ, у цій квартирі дуже економні КП послуги, район розвинутий, усі транспортні розв"язки, інфраструктура на вищому рівні! Усе залишаться окрім дивану! ЗАЇЖАЙ І ЖИВИ!'),
+       (13, 'COMFORT',  'GOOD',           'APARTMENT', '1960-06-12',  41000,  'USD', 1, 13, 'ПРОДАЖ 1 к-на кв-ра в. Кривоноса ( Високий Замок), 1/2ц, 3 (XXX) XXX-XX-XX хід з під‘їзду, квартира з ремонтом, МПВ, інд. опалення діюча пічка( газ), та ел. панелі, ел. бойлер, санвузол разом( туалет, ванна, ел. сушка), продається разом з меблями та побутовою технікою, для житла або здачі в оренду, 41000$,'),
 
-       (14, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP,  32000,  'USD', 1, 5, 'Comfortable apartment');
-       (15, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP,  34000,  'USD', 1, 5, 'Comfortable apartment');
-       (16, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  30000,  'USD', 1, 5, 'Lovely family house...');
-       (17, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  31000,  'USD', 1, 5, 'Lovely family house...');
-       (18, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  31500,  'USD', 1, 5, 'Lovely family house...');
-       (19, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP,  45000,  'USD', 1, 5, 'Lovely family house...');
-       (20, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP,  48000,  'USD', 1, 5, 'Lovely family house...');
-       (21, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  110000, 'USD', 1, 7, 'Decent office for your business...');
-       (22, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  120000, 'USD', 1, 8, 'Decent office for your business...');
-       (23, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (24, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (25, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (26, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (27, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (28, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (29, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (30, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...');
-       (31, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  180000, 'USD', 1, 10, 'Lovely apartment...');
-       (32, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious apartment...');
-       (33, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious apartment...');
-       (34, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...');
-       (35, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...');
-       (36, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...');
-       (37, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...');
-       (38, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...');
+       (14, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP,  32000,  'USD', 1, 5, 'Comfortable apartment'),
+       (15, 'COMFORT',  'GOOD',           'APARTMENT', CURRENT_TIMESTAMP,  34000,  'USD', 1, 5, 'Comfortable apartment'),
+       (16, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  30000,  'USD', 1, 5, 'Lovely family house...'),
+       (17, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  31000,  'USD', 1, 5, 'Lovely family house...'),
+       (18, 'COMFORT',  'SATISFACTORY',   'HOUSE',     CURRENT_TIMESTAMP,  31500,  'USD', 1, 5, 'Lovely family house...'),
+       (19, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP,  45000,  'USD', 1, 5, 'Lovely family house...'),
+       (20, 'COMFORT',  'GOOD',           'HOUSE',     CURRENT_TIMESTAMP,  48000,  'USD', 1, 5, 'Lovely family house...'),
+       (21, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  110000, 'USD', 1, 7, 'Decent office for your business...'),
+       (22, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  120000, 'USD', 1, 8, 'Decent office for your business...'),
+       (23, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (24, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (25, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (26, 'BUSINESS', 'GOOD',           'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (27, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (28, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (29, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (30, 'BUSINESS', 'PERFECT',        'OFFICE',    CURRENT_TIMESTAMP,  150000, 'USD', 1, 9, 'Decent office for your business...'),
+       (31, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  180000, 'USD', 1, 10, 'Lovely apartment...'),
+       (32, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious apartment...'),
+       (33, 'ELITE',    'PERFECT',        'APARTMENT', CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious apartment...'),
+       (34, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...'),
+       (35, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...'),
+       (36, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...'),
+       (37, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...'),
+       (38, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  300000, 'USD', 1, 11, 'Luxurious house...'),
        (39, 'ELITE',    'PERFECT',        'HOUSE',     CURRENT_TIMESTAMP,  160000, 'USD', 1, 12, 'Luxurious house...');
 
 INSERT INTO room (room_id, square, floor, accommodation_id)
