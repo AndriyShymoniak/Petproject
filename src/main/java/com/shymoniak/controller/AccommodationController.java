@@ -30,6 +30,11 @@ public class AccommodationController {
         return new ResponseEntity<>(accommodationService.findAccommodationById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/searchConfig")
+    public ResponseEntity<DynamicClass> getSearchConfig() {
+        return new ResponseEntity<>(accommodationService.sendSearchConfig(), HttpStatus.OK);
+    }
+    
     @PostMapping("/predictPrice")
     public ResponseEntity<Float> predictAccommodationPrice(@RequestBody AccommodationDTO accommodation) {
         return new ResponseEntity<>(accommodationService.predictAccommodationPrice(accommodation), HttpStatus.OK);
@@ -38,11 +43,6 @@ public class AccommodationController {
     @PostMapping("/filter")
     public ResponseEntity<List<AccommodationDTO>> showFilteredAccommodations(@RequestBody DynamicClass dynamicClass) {
         return new ResponseEntity<>(accommodationService.findBySearchCriteria(dynamicClass), HttpStatus.OK);
-    }
-
-    @GetMapping("/searchConfig")
-    public ResponseEntity<DynamicClass> getSearchConfig() {
-        return new ResponseEntity<>(accommodationService.sendSearchConfig(), HttpStatus.OK);
     }
 
     @PostMapping

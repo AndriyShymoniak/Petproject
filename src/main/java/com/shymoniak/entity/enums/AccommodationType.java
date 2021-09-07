@@ -4,7 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum AccommodationType {
-    HOUSE("House", 1), OFFICE("Office", 2), APARTMENT("Apartment", 3);
+    APARTMENT("Apartment", 1),
+    HOUSE("House", 2),
+    OFFICE("Office", 3),;
 
     private final Integer id;
 

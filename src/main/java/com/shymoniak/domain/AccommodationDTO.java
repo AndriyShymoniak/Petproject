@@ -1,6 +1,5 @@
 package com.shymoniak.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.shymoniak.entity.enums.AccommodationClass;
 import com.shymoniak.entity.enums.AccommodationCondition;
 import com.shymoniak.entity.enums.AccommodationType;

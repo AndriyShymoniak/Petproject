@@ -14,11 +14,6 @@ public class SearchCriteria {
     private String value;
     private SearchCriteria [] relatedCriteria;
 
-    public SearchCriteria(String key, SearchOperation operation) {
-        this.key = key;
-        this.operation = operation;
-    }
-
     public SearchCriteria(String key, SearchOperation operation, String value) {
         this.key = key;
         this.operation = operation;
