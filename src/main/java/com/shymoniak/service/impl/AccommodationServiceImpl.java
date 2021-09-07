@@ -2,8 +2,14 @@ package com.shymoniak.service.impl;
 
 import com.shymoniak.constant.ApplicationConstants;
 import com.shymoniak.domain.AccommodationDTO;
+import com.shymoniak.domain.LocationDTO;
+import com.shymoniak.domain.RoomDTO;
 import com.shymoniak.entity.AccommodationEntity;
+import com.shymoniak.entity.enums.AccommodationClass;
+import com.shymoniak.entity.enums.AccommodationCondition;
+import com.shymoniak.entity.enums.AccommodationType;
 import com.shymoniak.exception.ApiRequestException;
+import com.shymoniak.model.PricePredictor;
 import com.shymoniak.repository.AccommodationRepository;
 import com.shymoniak.model.AccommodationFiller;
 import com.shymoniak.service.AccommodationService;
@@ -14,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,16 +31,19 @@ public class AccommodationServiceImpl implements AccommodationService {
     private final ObjectMapperUtils mapper;
     private final SearchUtility<AccommodationDTO> searchUtility;
     private final AccommodationFiller accommodationFiller;
+    private PricePredictor<AccommodationDTO> pricePredictor;
 
     @Autowired
     public AccommodationServiceImpl(AccommodationRepository accommodationRepository,
                                     ObjectMapperUtils mapper,
                                     SearchUtility<AccommodationDTO> searchUtility,
-                                    AccommodationFiller accommodationFiller) {
+                                    AccommodationFiller accommodationFiller,
+                                    PricePredictor<AccommodationDTO> pricePredictor) {
         this.accommodationRepository = accommodationRepository;
         this.mapper = mapper;
         this.searchUtility = searchUtility;
         this.accommodationFiller = accommodationFiller;
+        this.pricePredictor = pricePredictor;
     }
 
     @Override
@@ -89,5 +99,10 @@ public class AccommodationServiceImpl implements AccommodationService {
     public AccommodationDTO updateAccommodation(AccommodationDTO accommodation) {
         accommodationRepository.save(mapper.map(accommodation, AccommodationEntity.class));
         return accommodation;
+    }
+
+    @Override
+    public Float predictAccommodationPrice(AccommodationDTO accommodation) {
+        return pricePredictor.predict(accommodation, findAllAccommodations());
     }
 }

@@ -1,6 +1,5 @@
 package com.shymoniak.model.impl;
 
-import com.shymoniak.entity.AccommodationEntity;
 import com.shymoniak.model.MatrixUtility;
 import com.shymoniak.model.RegressionRunner;
 
@@ -9,7 +8,6 @@ import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,9 +23,12 @@ public class RegressionRunnerImpl implements RegressionRunner {
         this.matrixUtility = matrixUtility;
     }
 
-    // TODO: 2021-09-02 Refactor
     /**
-     * This method is used to process the input and return the statistics.
+     *  This method is used to process the input and return Regression
+     *  parameters.
+     * @param keyValues - values which are used for prediction
+     * @param resultValues - prediction result
+     * @return
      */
     @Override
     public List<Double> getRegressionParams(List<List<Double>> keyValues, List<Double> resultValues) {

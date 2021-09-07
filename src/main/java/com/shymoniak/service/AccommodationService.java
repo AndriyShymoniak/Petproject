@@ -19,4 +19,6 @@ public interface AccommodationService {
     AccommodationDTO deleteAccommodationById(Long id);
 
     AccommodationDTO updateAccommodation(AccommodationDTO accommodation);
+
+    Float predictAccommodationPrice(AccommodationDTO accommodation);
 }

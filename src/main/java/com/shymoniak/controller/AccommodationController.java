@@ -30,6 +30,11 @@ public class AccommodationController {
         return new ResponseEntity<>(accommodationService.findAccommodationById(id), HttpStatus.OK);
     }
 
+    @PostMapping("/predictPrice")
+    public ResponseEntity<Float> predictAccommodationPrice(@RequestBody AccommodationDTO accommodation) {
+        return new ResponseEntity<>(accommodationService.predictAccommodationPrice(accommodation), HttpStatus.OK);
+    }
+
     @PostMapping("/filter")
     public ResponseEntity<List<AccommodationDTO>> showFilteredAccommodations(@RequestBody DynamicClass dynamicClass) {
         return new ResponseEntity<>(accommodationService.findBySearchCriteria(dynamicClass), HttpStatus.OK);
