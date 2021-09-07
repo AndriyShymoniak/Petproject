@@ -17,6 +17,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Uses free API to get currency values.
+ */
 @Component
 public class CurrencyConverterImpl implements CurrencyConverter {
     public Map<String, Double> getExchangeValues() {

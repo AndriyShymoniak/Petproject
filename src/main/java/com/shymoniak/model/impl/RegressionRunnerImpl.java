@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implements Linear Regression
+ */
 @Component
 public class RegressionRunnerImpl implements RegressionRunner {
     private AccommodationRepository accommodationRepository;

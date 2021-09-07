@@ -5,8 +5,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Contains specific methods to work with matrices.
+ */
 @Component
 public class MatrixUtilityImpl implements MatrixUtility {
+
+    /**
+     * Converts list of Double into array
+     * @param list
+     * @return
+     */
     @Override
     public double[] listToArray(List<Double> list) {
         double[] arr = new double[list.size()];
@@ -16,6 +25,11 @@ public class MatrixUtilityImpl implements MatrixUtility {
         return arr;
     }
 
+    /**
+     * Converts 2D list of Double into 2D array
+     * @param list
+     * @return
+     */
     @Override
     public double[][] listTo2DArray(List<List<Double>> list) {
         double[][] arr = new double[list.size()][list.get(0).size()];

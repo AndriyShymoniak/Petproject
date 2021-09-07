@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Predicts price of Accommodation, relying on its characteristics.
+ * @param <T> - class that extends AccommodationDTO
+ */
 @Component
 public class AccommodationPricePredictor<T extends AccommodationDTO> implements PricePredictor<T> {
     private RegressionRunner regressionRunner;

@@ -7,10 +7,17 @@ import com.shymoniak.model.DistanceCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class is used to add missing fields to accommodation.
+ */
 @Component
 public class AccommodationFillerImpl implements AccommodationFiller {
+    private final DistanceCalculator distanceCalculator;
+
     @Autowired
-    private DistanceCalculator distanceCalculator;
+    public AccommodationFillerImpl(DistanceCalculator distanceCalculator) {
+        this.distanceCalculator = distanceCalculator;
+    }
 
     @Override
     public AccommodationDTO fillMissingFields(AccommodationDTO accommodation) {
@@ -36,5 +43,4 @@ public class AccommodationFillerImpl implements AccommodationFiller {
         }
         return accommodation;
     }
-
 }

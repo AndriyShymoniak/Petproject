@@ -15,6 +15,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implements search with dynamic amount of variables.
+ * @param <T> - DTO class to be searched
+ */
 @Component
 public class SearchUtilityImpl<T> implements SearchUtility<T> {
 
@@ -27,18 +31,36 @@ public class SearchUtilityImpl<T> implements SearchUtility<T> {
         this.objectMapperUtils = objectMapperUtils;
     }
 
+    /**
+     * Generates specification of searched object, based on its search
+     * configuration.
+     * @param dynamicClass - class with dynamically added search fields
+     * @param t - instance of searched object
+     * @return
+     */
     @Override
     public Specification<T> getDynamicSpecification(DynamicClass dynamicClass, T t) {
         t = convertToOriginalClass(dynamicClass, t);
         return specificationBuilder.buildSpecification(t);
     }
 
+    /**
+     * Converts instance of searched class into DynamicClass
+     * @param t - Class to be searched
+     * @return
+     */
     @Override
     public DynamicClass generateDynamicClass(T t) {
         List<DynamicField> dynamicFields = generateDynamicFields(t);
         return new DynamicClass(dynamicFields);
     }
 
+    /**
+     * Converts DynamicClass into its original class
+     * @param dynamicClass
+     * @param t
+     * @return
+     */
     @Override
     public T convertToOriginalClass(DynamicClass dynamicClass, T t) {
         try {
@@ -60,6 +82,11 @@ public class SearchUtilityImpl<T> implements SearchUtility<T> {
         }
     }
 
+    /**
+     * Generates dynamic fields of searched class
+     * @param t
+     * @return
+     */
     private List<DynamicField> generateDynamicFields(T t) {
         List<DynamicField> dynamicFields = new ArrayList<>();
         Field[] declaredFields = t.getClass().getDeclaredFields();
